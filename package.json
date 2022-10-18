@@ -15,7 +15,8 @@
     "./dist/assets/IXO.svg": "./dist/assets/IXO.svg"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "version": "0.0.2",
   "type": "module",
