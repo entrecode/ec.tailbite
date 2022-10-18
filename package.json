@@ -18,7 +18,7 @@
     "dist",
     "src"
   ],
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -26,6 +26,7 @@
     "preview": "vite preview",
     "patch": "sh ./patch.sh"
   },
+  "dependencies": {},
   "peerDependencies": {
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
