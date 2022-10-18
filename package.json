@@ -1,6 +1,6 @@
 {
   "name": "ec.tailbite",
-  "private": true,
+  "private": false,
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@entrecode"
   },
