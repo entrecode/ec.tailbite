@@ -12,7 +12,10 @@
       "import": "./dist/index.es.js"
     },
     "./dist/style.css": "./dist/style.css",
-    "./dist/assets/IXO.svg": "./dist/assets/IXO.svg"
+    "./dist/assets/IXO.svg": "./dist/assets/IXO.svg",
+    "./components/Section": "./src/components/Section",
+    "./components/Button": "./src/components/Button",
+    "./components/Card": "./src/components/Card"
   },
   "files": [
     "dist",

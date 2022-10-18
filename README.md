@@ -19,10 +19,10 @@ Since it is a private package, you are required to have npm configured correctly
 
 Replace `YOURTOKEN` with the generated PAT
 
-### 3. open a new terminal and run:
+### 3. open a new terminal and run
 
 ```sh
-npm install @entrecode/tailbite
+npm install @entrecode/tailbite --save
 ```
 
 ## Usage
