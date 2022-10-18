@@ -5,9 +5,7 @@
     "registry": "https://npm.pkg.github.com/@entrecode"
   },
   "exports": {
-    "./dist/style.css": "./dist/style.css",
-    "./dist/assets/IXO.svg": "./dist/assets/IXO.svg",
-    "./src/*": "./src/*",
+    "./*": "./src/*",
     "./dist/*": "./dist/*"
   },
   "files": [
