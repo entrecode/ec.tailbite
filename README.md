@@ -1,6 +1,6 @@
 # ec.tailbite
 
-![tailbite logo](https://i.imgur.com/XbaEseA.jpg)
+![tailbite logo](./logo.png)
 
 This is the entrecode frontend component framework.
 
