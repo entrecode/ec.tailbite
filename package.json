@@ -29,6 +29,9 @@
     "preview": "vite preview",
     "patch": "sh ./patch.sh"
   },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
   "peerDependencies": {
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
@@ -38,7 +41,6 @@
     "ec.sdk": "^0.25.0",
     "jsoneditor": "^9.9.2",
     "medium-editor": "^5.23.3",
-    "react": "^18.2.0",
     "react-color": "^2.19.3",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
