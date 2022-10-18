@@ -1,4 +1,4 @@
-/* export { default as AssetGroupManager } from '@/components/AssetManager/AssetGroupManager';
+export { default as AssetGroupManager } from '@/components/AssetManager/AssetGroupManager';
 export { default as AssetManagerDropzone } from '@/components/AssetManager/AssetManagerDropzone';
 export { default as AssetManagerGallery } from '@/components/AssetManager/AssetManagerGallery';
 export { default as AssetPickerModal } from '@/components/AssetManager/AssetPickerModal';
@@ -103,5 +103,3 @@ export { default as TopMenuSearch } from '@/components/TopMenuSearch';
 export { default as UpsellingForm } from '@/components/UpsellingForm';
 export { default as Warning } from '@/components/Warning';
 export { default as WebhookEvent } from '@/components/WebhookEvent';
- */
-export {};

@@ -3,7 +3,7 @@
 git diff-index --quiet HEAD --
 git checkout develop
 git pull
-# npm run build && 
+npm run build && 
 bump patch && 
 npm i && 
 git add . && 
