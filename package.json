@@ -5,7 +5,7 @@
     "registry": "https://npm.pkg.github.com/@entrecode"
   },
   "exports": {
-    "./*": "./src/*",
+    "./src/*": "./src/*",
     "./dist/*": "./dist/*"
   },
   "files": [
