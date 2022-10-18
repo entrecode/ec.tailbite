@@ -4,7 +4,20 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@entrecode"
   },
-  "version": "0.0.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.es.js"
+    },
+    "./dist/style.css": "./dist/style.css",
+    "./dist/assets/IXO.svg": "./dist/assets/IXO.svg"
+  },
+  "files": [
+    "dist"
+  ],
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
