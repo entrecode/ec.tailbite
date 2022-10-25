@@ -42,6 +42,8 @@ module.exports = {
 
 ## Usage
 
+### Imports
+
 Each file is imported seperately:
 
 ```js
@@ -51,6 +53,14 @@ import cx from '@entrecode/ec.tailbite/util/classNames';
 ```
 
 This ensures your bundle stays small.
+
+### Environment
+
+Wrap your App in `Tailbite` like this:
+
+```jsx
+<Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>{/* your app */}</Tailbite>
+```
 
 ## Dev Notes
 

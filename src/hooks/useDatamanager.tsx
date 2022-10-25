@@ -1,9 +1,10 @@
 import { DataManager } from 'ec.sdk';
 import useSWRImmutable from 'swr/immutable';
-import environment from '../environment';
+import { useTailbite } from '../components/Tailbite';
 import useSdk from './useSdk';
 
 function useDatamanager() {
+  const environment = useTailbite();
   return useSWRImmutable(['DataManager', environment.env], () => new DataManager(environment.env));
 }
 

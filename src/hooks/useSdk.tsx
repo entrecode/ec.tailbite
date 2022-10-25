@@ -1,8 +1,8 @@
 import { PublicAPI, Session } from 'ec.sdk';
 import { environment as Environment, options as Options } from 'ec.sdk/lib/Core';
-import { createContext, useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import useSWRImmutable from 'swr/immutable';
-import environment from '../environment';
+import { useTailbite } from '../components/Tailbite';
 import useAccounts from './useAccounts';
 
 export interface UsePublicAPIProps {
@@ -27,24 +27,8 @@ export function usePublicAPI(props: UsePublicAPIProps) {
   return res;
 }
 
-const PublicAPIContext = createContext<PublicAPI | undefined>(undefined);
-
-export const PublicAPIProvider = (props: any) => {
-  const { children, shortID, env = environment.env } = props;
-  const { data: api } = usePublicAPI({
-    shortID,
-    env,
-    swrOptions: {
-      retryOnError: false,
-      onError: (err) => {
-        console.warn(`error loading public api with shortID "${shortID}"`, err);
-      },
-    },
-  });
-  return <PublicAPIContext.Provider value={api}>{children}</PublicAPIContext.Provider>;
-};
-
 export function useSession() {
+  const environment = useTailbite();
   const res = useSWRImmutable(['Session', environment.env], () => {
     const session = new Session(environment.env);
     session.setClientID('rest');
@@ -61,7 +45,18 @@ export function useSession() {
  * ```
  */
 function useSdk() {
-  const api = useContext(PublicAPIContext);
+  const { env, shortID } = useTailbite();
+
+  const { data: api } = usePublicAPI({
+    shortID,
+    env,
+    swrOptions: {
+      retryOnError: false,
+      onError: (err) => {
+        console.warn(`error loading public api with shortID "${shortID}"`, err);
+      },
+    },
+  });
   const apiResolved = !!api;
   const { data: accounts } = useAccounts();
   const { data: session, mutate, token } = useSession();

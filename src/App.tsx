@@ -1,9 +1,15 @@
+import { useState } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import AssetPickerSingle from './components/AssetPickerSingle';
 import Button from './components/Button';
 import Card from './components/Card';
 import { ModalExample } from './components/Modal';
 import Section from './components/Section';
+import Tailbite from './components/Tailbite';
 
 function App() {
+  const [asset, setAsset] = useState();
   return (
     <Section>
       <Section.Sticky>
@@ -24,6 +30,11 @@ function App() {
         </Card>
       </Section.Container>
       <ModalExample />
+      <DndProvider backend={HTML5Backend}>
+        <Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>
+          <AssetPickerSingle group="test" value={asset} onChange={setAsset} />
+        </Tailbite>
+      </DndProvider>
     </Section>
   );
 }

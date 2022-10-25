@@ -1,7 +1,7 @@
 import { classNames } from '../util/classNames';
 import Ink from './Ink';
 import Tooly from './Tooly';
-import IXO from '../../public/assets/IXO.svg';
+import IXO from '../assets/IXO.svg';
 
 function Ixo(props) {
   const { icon, className, children, iconClass } = props;

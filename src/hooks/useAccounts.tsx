@@ -1,9 +1,10 @@
 import { Accounts } from 'ec.sdk';
 import useSWRImmutable from 'swr/immutable';
-import environment from '../environment';
+import { useTailbite } from '../components/Tailbite';
 
 function useAccounts() {
-  return useSWRImmutable(['Accounts', environment.env], () => new Accounts(environment.env));
+  const environment = useTailbite();
+  return useSWRImmutable(environment ? ['Accounts', environment.env] : null, () => new Accounts(environment.env));
 }
 
 export default useAccounts;

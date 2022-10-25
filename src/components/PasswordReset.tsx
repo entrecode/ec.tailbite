@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-import environment from '../environment';
 import useNotifications from '../hooks/useNotifications';
+import { useTailbite } from './Tailbite';
 
 export default function PasswordReset({ abort = false }: any) {
   const notifications = useNotifications();
+  const environment = useTailbite();
   const { jwt } = useParams();
   const navigate = useNavigate();
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import useSWR from 'swr';
-import environment from '../environment';
+import { useTailbite } from '../components/Tailbite';
 import { request } from '../util/request';
 import { withParams } from '../util/withParams';
 import useSdk from './useSdk';
@@ -19,8 +19,12 @@ import useSdk from './useSdk';
 
 const useClubappAPI = () => {
   const { token } = useSdk();
+  const environment = useTailbite();
   const fetcher = useCallback(
     async (method, route, body?, headers = {}) => {
+      if (!environment) {
+        throw new Error('no environment given!');
+      }
       const url = new URL(route, environment.clubappApiUrl).toString();
       return request(url, method, body, { authorization: `Bearer ${token}`, ...headers }).then(({ data }) => data);
     },
