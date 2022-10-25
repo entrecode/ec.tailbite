@@ -3,6 +3,14 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { peerDependencies, dependencies } from './package.json';
 import dts from 'vite-plugin-dts';
+import crawl from './crawl';
+
+// automated code splitting chunks:
+const files = ['components', 'hooks', 'util'].reduce((acc, p) => acc.concat(crawl(p, 'src')), []);
+const removeFileEnding = (p) => p.split('.').slice(0, -1).join('');
+const chunks = Object.fromEntries(
+  files.map((p) => [removeFileEnding(p), path.resolve(__dirname, 'src', ...p.split('/'))]),
+);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,14 +27,16 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src', 'index.ts'),
-      formats: ['es', 'cjs'],
-      fileName: (ext) => `index.${ext}.js`,
+      entry: {
+        // index: path.resolve(__dirname, 'src', 'index.ts'),
+        ...chunks,
+      },
+      formats: ['es' /* , 'cjs' */],
+      // fileName: (ext) => `index.${ext}.js`,
       // for UMD name: 'GlobalName'
     },
     rollupOptions: {
       external: [...Object.keys(peerDependencies), ...Object.keys(dependencies)],
-      // input: ['src/components/Section.tsx', 'src/components/Button.tsx', 'src/components/Card.tsx'],
     },
     target: 'esnext',
   },
