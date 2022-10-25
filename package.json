@@ -5,11 +5,8 @@
     "registry": "https://npm.pkg.github.com/@entrecode"
   },
   "exports": {
-    "./*": "./dist/*"
+    "./*": "./*"
   },
-  "files": [
-    "dist"
-  ],
   "version": "0.0.20",
   "type": "module",
   "scripts": {
