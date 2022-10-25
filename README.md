@@ -34,7 +34,7 @@ module.exports = {
   /* .. */
   content: [
     /* .. */
-    './node_modules/@entrecode/ec.tailbite/*.{js,ts,jsx,tsx}',
+    './node_modules/@entrecode/ec.tailbite/**/*.{js,ts,jsx,tsx}',
   ],
   /* .. */
 };

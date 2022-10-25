@@ -1,5 +1,6 @@
 import Button from './components/Button';
 import Card from './components/Card';
+import { ModalExample } from './components/Modal';
 import Section from './components/Section';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           </Card.Body>
         </Card>
       </Section.Container>
+      <ModalExample />
     </Section>
   );
 }
