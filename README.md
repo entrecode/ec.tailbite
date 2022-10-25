@@ -27,7 +27,7 @@ npm install @entrecode/tailbite --save
 
 ### 4. configure styles
 
-To make sure you have all styles, add `ec.tailbite` to your tailwind config like this:
+To make sure you have all styles, make sure your tailwind config includes:
 
 ```js
 module.exports = {
@@ -37,6 +37,7 @@ module.exports = {
     './node_modules/@entrecode/ec.tailbite/**/*.{js,ts,jsx,tsx}',
   ],
   /* .. */
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio'), require('@tailwindcss/typography')],
 };
 ```
 
