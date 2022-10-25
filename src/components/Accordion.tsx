@@ -66,7 +66,7 @@ export const AccordionHead = ({
   return (
     <Disclosure.Button
       className={classNames(
-        'border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-700 flex w-full justify-between px-4 py-4 text-left text-sm font-medium whitespace-nowrap text-gray-900 dark:text-gray-200 focus-visible:ring-indigo-500 focus-visible:ring-opacity-75',
+        'border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-700 flex w-full justify-between px-4 py-4 text-left text-sm font-medium whitespace-nowrap text-gray-900 dark:text-gray-200 focus-visible:ring-primary focus-visible:ring-opacity-75',
         $first ? 'rounded-t-md' : '',
         $last && !open ? 'rounded-b-md' : '',
       )}

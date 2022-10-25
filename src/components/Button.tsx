@@ -22,12 +22,10 @@ rounded-md
 text-sm
 ${({ $primary, $secondary, $danger }) =>
   ($primary || $secondary || $danger) && 'shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2'}
-${({ $primary }) =>
-  $primary &&
-  'border-transparent text-white bg-indigo-600 dark:bg-indigo-700 hover:bg-indigo-700 focus:ring-indigo-500'}
+${({ $primary }) => $primary && 'border-transparent text-white bg-primary hover:opacity-80 focus:ring-primary'}
 ${({ $secondary }) =>
   $secondary &&
-  '`border-gray-300 dark:border-gray-800 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:ring-indigo-500'}
+  '`border-gray-300 dark:border-gray-800 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:ring-primary'}
 ${({ $danger }) =>
   $danger &&
   'border-transparent text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'}

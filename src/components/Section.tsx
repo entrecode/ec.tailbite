@@ -11,7 +11,7 @@ const Section: any = tw.section``;
 Section.Header = ({ children }: any) => {
   console.warn('Section.Header has been renamed to Section.Head for consistency');
   return (
-    <div className="py-5 px-8 border-b border-gray-200 dark:border-gray-600 flex items-center sm:justify-between sticky top-0 bg-gray-100 dark:bg-gray-900 z-[30]">
+    <div className="py-5 px-8 border-b border-base-300 flex items-center sm:justify-between sticky top-0 bg-base-100 z-[30]">
       {children}
     </div>
   );
@@ -21,10 +21,9 @@ Section.Simple = tw.div`py-5 px-8 border-b border-gray-200`;
 
 Section.Caption = tw.div`mt-2 max-w-4xl text-sm text-gray-500 p-0`;
 
-Section.Head = tw.div`py-5 px-8 border-b border-gray-200 dark:border-gray-600 flex items-center sm:justify-between sticky top-0 bg-gray-100 dark:bg-gray-900 z-[30]`;
-Section.HeadWhite = tw.div`py-5 px-8 border-b border-gray-200 dark:border-gray-600 flex items-center sm:justify-between sticky top-0 bg-white dark:bg-gray-900 z-[30]`;
+Section.Head = tw.div`py-5 px-8 border-b border-base-300 flex items-center sm:justify-between sticky top-0 bg-base-100 z-[30]`;
 
-Section.Heading = tw.h2`m-0 text-lg leading-6 font-medium text-gray-900 dark:text-gray-200`;
+Section.Heading = tw.h2`m-0 text-lg leading-6 font-medium text-base-900`;
 
 Section.Center = tw.div`flex justify-center`;
 
@@ -38,7 +37,7 @@ Section.HeadingToggle = ({
   depends?: string;
 }) => {
   return (
-    <h2 className="m-0 text-lg leading-6 font-medium text-gray-900 dark:text-gray-200 flex items-center">
+    <h2 className="m-0 text-lg leading-6 font-medium text-base-900 flex items-center">
       {children}
       <HeaderSettingsToggle type={settingsType} depends={depends} />
     </h2>
@@ -49,8 +48,8 @@ Section.Body = tw.div`px-6 py-3`;
 
 // alternatives for more flexible styling
 Section.Container = tw.div`py-5 px-6 w-full`;
-Section.Divider = tw.div`border-b border-gray-200 dark:border-gray-600`;
-Section.Sticky = tw.div`sticky top-0 bg-gray-100 dark:bg-gray-900 z-[30]`;
+Section.Divider = tw.div`border-b border-base-300`;
+Section.Sticky = tw.div`sticky top-0 bg-base-100 z-[30]`;
 
 Section.Menu = tw.div`flex`;
 
@@ -70,7 +69,7 @@ Section.BackButton = () => {
   );
 };
 
-Section.Sub = tw.h3`text-lg leading-6 font-medium text-gray-900 dark:text-gray-200 !m-0 !mb-0`;
+Section.Sub = tw.h3`text-lg leading-6 font-medium text-base-900 !m-0 !mb-0`;
 
 export default Section;
 

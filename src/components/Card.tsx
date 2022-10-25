@@ -5,7 +5,7 @@ const Card: any = tw.div`
 shadow-md
 relative text-sm
 sm:rounded-md
-bg-white dark:bg-gray-600
+bg-base-200
 `;
 
 export const CardBody = tw.div<{ $inner: boolean }>`

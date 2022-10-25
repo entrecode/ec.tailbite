@@ -36,10 +36,21 @@ module.exports = {
     /* .. */
     './node_modules/@entrecode/ec.tailbite/**/*.{js,ts,jsx,tsx}',
   ],
-  /* .. */
+  theme: {
+    extend: {
+      colors: {
+        /* copy this part from ec.tailbite tailwind.config.js */
+      },
+    },
+  },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio'), require('@tailwindcss/typography')],
+  /* .. */
 };
 ```
+
+### 5. configure theme
+
+Copy the contents [index.css](./src/index.css) to your main css file and adapt the theme to your needs.
 
 ## Usage
 

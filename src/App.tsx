@@ -11,31 +11,31 @@ import Tailbite from './components/Tailbite';
 function App() {
   const [asset, setAsset] = useState();
   return (
-    <Section>
-      <Section.Sticky>
-        <Section.Container className="max-w-4xl flex justify-between items-center">
-          <Section.Heading>Section</Section.Heading>
-          <Button $primary onClick={() => console.log('action')}>
-            action
-          </Button>
-        </Section.Container>
-        <Section.Divider />
-      </Section.Sticky>
-      <Section.Container className="max-w-4xl">
-        <Card>
-          <Card.Body>
-            This Section uses Container / Sticky / Divider instead of Head / Body. This enables setting max-w but
-            keeping the line full width.
-          </Card.Body>
-        </Card>
-      </Section.Container>
-      <ModalExample />
+    <Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>
       <DndProvider backend={HTML5Backend}>
-        <Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>
-          <AssetPickerSingle group="test" value={asset} onChange={setAsset} />
-        </Tailbite>
+        <Section>
+          <Section.Sticky>
+            <Section.Container className="max-w-4xl flex justify-between items-center">
+              <Section.Heading>Section</Section.Heading>
+              <Button $primary onClick={() => console.log('action')}>
+                action
+              </Button>
+            </Section.Container>
+            <Section.Divider />
+          </Section.Sticky>
+          <Section.Container className="max-w-4xl space-y-2">
+            <Card>
+              <Card.Body>
+                This Section uses Container / Sticky / Divider instead of Head / Body. This enables setting max-w but
+                keeping the line full width.
+              </Card.Body>
+            </Card>
+            <AssetPickerSingle group="test" value={asset} onChange={setAsset} />
+            <ModalExample />
+          </Section.Container>
+        </Section>
       </DndProvider>
-    </Section>
+    </Tailbite>
   );
 }
 

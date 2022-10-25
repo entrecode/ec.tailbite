@@ -13,9 +13,9 @@ export function AssetDropzone({ children, onDrop }: any) {
       {({ drop, isActive }) => (
         <div className="relative" ref={drop}>
           {typeof children === 'function' ? children({ isActive }) : children}
-          
+
           {isActive && (
-            <div className={classNames(border, 'absolute top-0 left-0 w-full h-full bg-indigo-600 bg-opacity-50')}>
+            <div className={classNames(border, 'absolute top-0 left-0 w-full h-full bg-primary bg-opacity-50')}>
               Loslassen zum Hochladen!
             </div>
           )}
