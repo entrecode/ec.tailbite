@@ -11,12 +11,10 @@
       "require": "./dist/index.cjs.js",
       "import": "./dist/index.es.js"
     },
-    "./src/*": "./src/*",
-    "./dist/*": "./dist/*"
+    "./*": "./dist/*"
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "version": "0.0.19",
   "type": "module",
