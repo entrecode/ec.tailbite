@@ -5,7 +5,7 @@ git checkout develop
 git pull
 npm run build && 
 bump patch && 
-npm i && 
+npm i --force && 
 git add . && 
 git commit -m "bump version" &&
 npm publish
