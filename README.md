@@ -88,3 +88,13 @@ This is now implemented using a file crawler to determine the chunks automatical
 ### Import Magic
 
 To be able to import without including the `dist` folder, I am using a [little hack](https://github.com/npm/npm/issues/10996#issuecomment-372985827).
+
+### Package Publishing
+
+To publish the package to the private entrecode github registry, run:
+
+```sh
+npm run patch
+```
+
+This will build all files and bump the version + commit everything.
