@@ -15,6 +15,7 @@ const Input: any = forwardRef<any>((props: any, ref) => {
       className={classNames(
         `block shadow-sm 
         focus:ring-primary
+        focus:border-primary
         sm:text-sm
         disabled:bg-gray-200 
         disabled:dark:bg-gray-900 
