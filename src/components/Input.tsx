@@ -15,13 +15,12 @@ const Input: any = forwardRef<any>((props: any, ref) => {
       className={classNames(
         `block shadow-sm 
         focus:ring-primary
-        text-primary accent-current
         sm:text-sm
         disabled:bg-gray-200 
         disabled:dark:bg-gray-900 
         border-gray-300 dark:border-gray-500 rounded-md 
         dark:bg-gray-700`,
-        !['radio', 'checkbox'].includes(props.type) && 'w-full',
+        ['radio', 'checkbox'].includes(props.type) ? 'text-primary accent-current' : 'w-full',
         className,
       )}
     />
