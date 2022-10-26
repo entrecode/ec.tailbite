@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useBackends from '../hooks/useBackends';
 import SimpleSelect from './SimpleSelect';
+import Tailbite from './Tailbite';
 
 function BackendSelect(props: {
   /** Label for empty value, defaults to "Alle Backends" */
@@ -50,3 +51,12 @@ function BackendSelect(props: {
 // all you need is "backends" + "setBackends" which are provided by useBackends or useSharedResource
 
 export default React.memo(BackendSelect);
+
+export function BackendSelectExample() {
+  const [backend, setBackend] = useState('');
+  return (
+    <Tailbite environment={{ shortID: 'fb5dbaab', env: 'stage' }}>
+      <BackendSelect value={backend} onChange={setBackend} />
+    </Tailbite>
+  );
+}

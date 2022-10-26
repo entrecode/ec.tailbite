@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { plugin as markdown, Mode } from 'vite-plugin-markdown';
 import path from 'path';
 import { peerDependencies, dependencies } from './package.json';
 import dts from 'vite-plugin-dts';
@@ -20,6 +21,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    markdown({ mode: [Mode.REACT] }),
     react(),
     dts({
       insertTypesEntry: true,

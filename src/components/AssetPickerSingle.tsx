@@ -11,6 +11,7 @@ import fileVariant from '../util/fileVariant';
 import { AssetDropzone } from './AssetDropzone';
 import Img from './Img';
 import Ink from './Ink';
+import Tailbite from './Tailbite';
 
 // TODO: storybook?
 
@@ -107,5 +108,14 @@ export default function AssetPickerSingle(props: any) {
         solo
       />
     </>
+  );
+}
+
+export function AssetPickerSingleExample() {
+  const [asset, setAsset] = useState();
+  return (
+    <Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>
+      <AssetPickerSingle group="test" value={asset} onChange={setAsset} />
+    </Tailbite>
   );
 }

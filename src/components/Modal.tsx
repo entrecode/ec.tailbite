@@ -72,6 +72,7 @@ export function ModalExample() {
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <div className="sm:max-w-lg sm:w-full">
+          <div className="py-2 mb-4">This is a modal!</div>
           <Button $primary onClick={() => setOpen(false)}>
             Close
           </Button>

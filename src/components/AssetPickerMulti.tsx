@@ -10,15 +10,16 @@ import { AssetDropzone } from './AssetDropzone';
 import Img from './Img';
 import Ink from './Ink';
 import LocalLoader from './LocalLoader';
+import Tailbite from './Tailbite';
 
 // TODO: storybook?
 
 export default function AssetPickerMulti(props: {
   group: string;
-  solo: true;
+  // solo: true;
   value: string[];
   onChange: (value: string[] | null) => void;
-  children: any; // React.ReactNode | () => any;
+  children?: any; // React.ReactNode | () => any;
 }) {
   const { value, group, onChange, children } = props;
   const { api } = useSdk();
@@ -87,5 +88,14 @@ export default function AssetPickerMulti(props: {
         value={value}
       />
     </>
+  );
+}
+
+export function AssetPickerMultiExample() {
+  const [assets, setAssets] = useState<any>([]);
+  return (
+    <Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>
+      <AssetPickerMulti group="test" value={assets} onChange={setAssets} />
+    </Tailbite>
   );
 }

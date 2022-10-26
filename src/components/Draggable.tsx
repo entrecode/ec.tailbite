@@ -80,18 +80,22 @@ export default function Draggable(props) {
 }
 
 export function DraggableExample() {
-  return [1, 2, 3].map((_, index) => (
-    <div key={index}>
-      <Draggable type="benefit" index={index} onDrop={(from, to) => console.log('drop', from, to)}>
-        {(dragRef, dropRef) => (
-          <div ref={dropRef}>
-            <p>any content #{index}</p>
-            <div ref={dragRef} className="cursor-move">
-              drag
-            </div>
-          </div>
-        )}
-      </Draggable>
-    </div>
-  ));
+  return (
+    <>
+      {[1, 2, 3].map((_, index) => (
+        <div key={index}>
+          <Draggable type="benefit" index={index} onDrop={(from, to) => console.log('drop', from, to)}>
+            {(dragRef, dropRef) => (
+              <div ref={dropRef}>
+                <p>any content #{index}</p>
+                <div ref={dragRef} className="cursor-move">
+                  drag
+                </div>
+              </div>
+            )}
+          </Draggable>
+        </div>
+      ))}
+    </>
+  );
 }
