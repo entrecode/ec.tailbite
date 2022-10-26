@@ -4,6 +4,7 @@ import { hexContrastColor } from '../util/color';
 declare interface ColorConfig {
   dark?: boolean;
   primary?: string;
+  primaryContrast?: string;
   secondary?: string;
   accent?: string;
   text?: string;
@@ -15,7 +16,7 @@ declare interface ColorConfig {
 function getStyles(colors, isDark) {
   const variables = {
     'color-primary': colors.primary,
-    'color-primary-contrast': hexContrastColor(colors.primary),
+    'color-primary-contrast': colors.primaryContrast || hexContrastColor(colors.primary),
     'color-secondary': colors.secondary,
     'color-accent': colors.accent,
     'color-bg': isDark ? colors.darkBg || '#111827' : colors.bg || 'white',

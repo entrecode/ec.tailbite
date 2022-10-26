@@ -84,10 +84,6 @@ Wrap your App in `Tailbite` like this:
 </Tailbite>
 ```
 
-### Theming
-
-Tailwind will run in dark mode when your theme contains the word dark!
-
 ## Dev Notes
 
 ### Build
