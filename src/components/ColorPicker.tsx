@@ -134,7 +134,7 @@ export function NativeColorPickerInput(props) {
               value={field.value || ''}
               onChange={field.onChange}
               placeholder={placeholder}
-              className="w-24 block pl-2 min-w-0 rounded-none rounded-r-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 dark:border-gray-500 dark:bg-gray-700"
+              className="w-24 block pl-2 min-w-0 rounded-none rounded-r-md focus:ring-primary focus:border-primary sm:text-sm border-gray-300 dark:border-gray-500 dark:bg-gray-700"
             />
           )}
         </div>

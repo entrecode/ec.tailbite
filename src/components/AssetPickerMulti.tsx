@@ -97,7 +97,15 @@ export default function AssetPickerMulti(props: {
 export function AssetPickerMultiExample() {
   const [assets, setAssets] = useState<any>([]);
   return (
-    <Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>
+    <Tailbite
+      environment={{
+        shortID: '83cc6374',
+        env: 'stage',
+        colors: {
+          primary: '#ba443c',
+        },
+      }}
+    >
       <AssetPickerMulti group="test" value={assets} onChange={setAssets} />
     </Tailbite>
   );

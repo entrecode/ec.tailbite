@@ -6,6 +6,7 @@ import tw from 'tailwind-styled-components';
 import { classNames } from '../util/classNames';
 import randomID from '../util/randomID';
 import Form from './Form';
+import Input from './Input';
 
 /** Compact Dropdown Component */
 function Dropdown({
@@ -87,14 +88,7 @@ export const DropdownCheckbox = ({
   const id = randomID();
   return (
     <div className={classNames('flex items-center', className)}>
-      <input
-        id={id}
-        name={id}
-        checked={checked || false}
-        onChange={onChange}
-        type="checkbox"
-        className={`h-4 w-4 ${Form.Item.checkbox}`}
-      />
+      <Input type="checkbox" id={id} name={id} checked={checked || false} onChange={onChange} />
       <label
         htmlFor={id}
         className="ml-3 pr-6 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap select-none"

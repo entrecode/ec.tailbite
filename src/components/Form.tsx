@@ -52,7 +52,7 @@ Form.Textarea = forwardRef<any>((props, ref) => {
       ref={ref}
       {...props}
       className={`block w-full shadow-sm 
-      focus:ring-indigo-500 focus:border-indigo-500 
+      focus:ring-primary focus:border-primary 
       sm:text-sm 
       border-gray-300 dark:border-gray-500 rounded-md 
       dark:bg-gray-700`}
@@ -67,7 +67,7 @@ Form.Checkbox = forwardRef<any>((props: any, ref) => {
       {...props}
       type="checkbox"
       className={classNames(
-        'border-gray-300 dark:border-gray-500 rounded text-indigo-600 focus:ring-indigo-500 dark:bg-gray-700',
+        'border-gray-300 dark:border-gray-500 rounded text-primary focus:ring-primary dark:bg-gray-700',
         props.className,
       )}
     />
@@ -122,7 +122,7 @@ Form.Radio = forwardRef<any>((props: any, ref) => {
       {...props}
       type="radio"
       className={classNames(
-        'border-gray-300 dark:border-gray-500 rounded-full text-indigo-600 focus:ring-indigo-500 dark:bg-gray-700',
+        'border-gray-300 dark:border-gray-500 rounded-full text-primary focus:ring-primary dark:bg-gray-700',
         props.className,
       )}
     />
@@ -132,15 +132,10 @@ Form.Radio = forwardRef<any>((props: any, ref) => {
 // dont use this, use Input component instead! TODO: refactor
 Form.Item.text = `
 block w-full shadow-sm 
-focus:ring-indigo-500 focus:border-indigo-500 
+focus:ring-primary focus:border-primary 
 sm:text-sm 
 border-gray-300 dark:border-gray-500 rounded-md 
 dark:bg-gray-700
-`;
-
-// dont use this, use Input component instead! TODO: refactor
-Form.Item.checkbox = `
-border-gray-300 dark:border-gray-500 rounded text-indigo-600 focus:ring-indigo-500 dark:bg-gray-700
 `;
 
 Form.Sections = ({ children }) => <div className="space-y-6 pt-6 mb-6">{children}</div>;

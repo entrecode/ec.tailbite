@@ -29,7 +29,7 @@ export default function TimePagination(props) {
   return (
     <div
       className={`flex items-center justify-between select-none space-x-2 shadow-sm px-2
-focus:ring-indigo-500 focus:border-indigo-500 py-2
+focus:ring-primary focus:border-primary py-2
 sm:text-sm  border border-gray-300 dark:border-gray-600 rounded-md  bg-white
 dark:bg-gray-700`}
     >

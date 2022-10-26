@@ -21,10 +21,7 @@ function CopyLink(props: {
   }
   return (
     <a
-      className={classNames(
-        'inline-flex items-center group text-indigo-600 dark:text-indigo-300 cursor-pointer whitespace-nowrap',
-        className,
-      )}
+      className={classNames('inline-flex items-center group underline cursor-pointer whitespace-nowrap', className)}
       title={value}
       onClick={(e) => {
         e.stopPropagation();

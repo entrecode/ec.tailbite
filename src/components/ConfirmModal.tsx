@@ -26,7 +26,7 @@ function ConfirmModal() {
   return (
     <Modal open={open} className="!p-0">
       <div className="sm:flex sm:items-start p-8">
-        <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10">
+        <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-primary text-primary-contrast sm:mx-0 sm:h-10 sm:w-10">
           <QuestionMarkCircleIcon className="h-5 w-5 text-gray-600" aria-hidden="true" />
         </div>
         <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">

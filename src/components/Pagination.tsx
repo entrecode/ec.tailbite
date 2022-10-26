@@ -39,7 +39,7 @@ export function Pagination(props: {
       onClick={() => changePage(page)}
       className={`${
         isSelected(page)
-          ? 'z-10 bg-indigo-50 dark:bg-indigo-900 border-indigo-500 text-indigo-600 dark:text-indigo-200 dark:border-indigo-200'
+          ? 'z-10 bg-primary border-primary text-primary-contrast'
           : 'bg-white dark:bg-gray-700 border-gray-300 text-gray-500 dark:text-gray-300 hover:bg-gray-50'
       } relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer select-none`}
     >

@@ -74,7 +74,7 @@ Sidebar.Heading = ({ children }: any) => {
 
 Sidebar.X = ({ onClose: onCloseProp }: any) => {
   const { onClose } = useContext(SidebarContext);
-  // focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+  // focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary
   return (
     <div className="ml-3 h-7 flex items-center">
       <button

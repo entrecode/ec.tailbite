@@ -1,19 +1,3 @@
-/*
-  This example requires Tailwind CSS v3.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { Combobox, Dialog, Transition } from '@headlessui/react';
 import { GlobeAltIcon } from '@heroicons/react/24/outline';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
@@ -97,7 +81,7 @@ export default function TopMenuSearch({ appsites, api, open, setOpen }) {
                               className={({ active }) =>
                                 classNames(
                                   'flex cursor-default select-none items-center px-4 py-2',
-                                  active && 'bg-indigo-600 text-white',
+                                  active && 'bg-primary text-primary-contrast',
                                 )
                               }
                             >
@@ -133,7 +117,7 @@ export default function TopMenuSearch({ appsites, api, open, setOpen }) {
                             className={({ active }) =>
                               classNames(
                                 'flex cursor-default select-none items-center px-4 py-2',
-                                active && 'bg-indigo-600 text-white',
+                                active && 'bg-primary text-primary-contrast',
                               )
                             }
                           >

@@ -114,7 +114,15 @@ export default function AssetPickerSingle(props: any) {
 export function AssetPickerSingleExample() {
   const [asset, setAsset] = useState();
   return (
-    <Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>
+    <Tailbite
+      environment={{
+        shortID: '83cc6374',
+        env: 'stage',
+        colors: {
+          primary: '#ba443c',
+        },
+      }}
+    >
       <AssetPickerSingle group="test" value={asset} onChange={setAsset} />
     </Tailbite>
   );

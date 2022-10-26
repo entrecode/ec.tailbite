@@ -37,7 +37,7 @@ export default function SimpleSelect(props: SimpleSelectProps<any>) {
         <div className={classNames('relative min-w-[200px]', className)}>
           <Listbox.Button
             ref={buttonRef}
-            className="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm"
           >
             <span className="block truncate">{selected?.label || selected?.value || placeholder || '-'}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -62,7 +62,7 @@ export default function SimpleSelect(props: SimpleSelectProps<any>) {
                     className={({ active }) =>
                       classNames(
                         item.hidden && 'hidden',
-                        active ? 'text-white dark:text-gray-300 bg-indigo-600' : 'text-gray-900 dark:text-gray-400 ',
+                        active ? 'bg-primary text-primary-contrast' : 'text-gray-900 dark:text-gray-400 ',
                         'cursor-default select-none relative py-2 pl-3 pr-9',
                       )
                     }
@@ -70,17 +70,18 @@ export default function SimpleSelect(props: SimpleSelectProps<any>) {
                   >
                     {({ selected, active }) => (
                       <>
-                        <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
+                        <span
+                          className={classNames(
+                            selected ? 'font-semibold' : 'font-normal',
+                            'block truncate',
+                            active ? 'text-primary-contrast' : '',
+                          )}
+                        >
                           {item.label || item.value}
                         </span>
 
                         {selected ? (
-                          <span
-                            className={classNames(
-                              active ? 'text-white' : 'text-indigo-600 dark:text-indigo-300',
-                              'absolute inset-y-0 right-0 flex items-center pr-4',
-                            )}
-                          >
+                          <span className={classNames('absolute inset-y-0 right-0 flex items-center pr-4')}>
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
                           </span>
                         ) : null}

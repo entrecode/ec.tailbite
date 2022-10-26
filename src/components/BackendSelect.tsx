@@ -55,7 +55,15 @@ export default React.memo(BackendSelect);
 export function BackendSelectExample() {
   const [backend, setBackend] = useState('');
   return (
-    <Tailbite environment={{ shortID: 'fb5dbaab', env: 'stage' }}>
+    <Tailbite
+      environment={{
+        shortID: 'fb5dbaab',
+        env: 'stage',
+        colors: {
+          primary: '#ba443c',
+        },
+      }}
+    >
       <BackendSelect value={backend} onChange={setBackend} />
     </Tailbite>
   );

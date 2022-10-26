@@ -99,7 +99,7 @@ export default function Calendar({ value, onChange }: { value: string | null; on
                           <td key={i} className={w === 0 ? 'pt-3' : ''}>
                             <div className="w-full h-full">
                               <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                <p className="text-md mb-0 w-8 h-8 flex items-center justify-center font-medium text-white bg-indigo-700 rounded-full">
+                                <p className="text-md mb-0 w-8 h-8 flex items-center justify-center font-medium text-white bg-primary text-primary-contrast rounded-full">
                                   {d.format('D')}
                                 </p>
                               </div>

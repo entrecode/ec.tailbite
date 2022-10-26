@@ -43,7 +43,7 @@ function Searchbar(props: {
         onKeyDown={(e) => onSearchClick && e.code === 'Enter' && onSearchClick()}
         onChange={(e) => onChange(e.target.value)}
         className={classNames(
-          `focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-gray-300`,
+          `focus:ring-primary focus:border-primary block w-full pl-10 sm:text-sm border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-gray-300`,
           inputClassName,
         )}
         placeholder={placeholder}

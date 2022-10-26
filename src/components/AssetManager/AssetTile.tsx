@@ -83,7 +83,7 @@ function AssetTile({
         className={classNames(
           tileClass,
           onClick && 'group-hover:opacity-50',
-          selected && 'outline outline-offset-2 outline-4 outline-indigo-800 dark:outline-indigo-400',
+          selected && 'outline outline-offset-2 outline-4 outline-primary',
         )}
       >
         {type === 'image' /* && asset.mimetype !== 'image/svg' */ ? (

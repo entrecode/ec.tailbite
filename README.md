@@ -71,7 +71,17 @@ This ensures your bundle stays small.
 Wrap your App in `Tailbite` like this:
 
 ```jsx
-<Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>{/* your app */}</Tailbite>
+<Tailbite
+  environment={{
+    shortID: '83cc6374',
+    env: 'stage',
+    colors: {
+      primary: '#ba443c',
+    },
+  }}
+>
+  {/* your app */}
+</Tailbite>
 ```
 
 ### Theming

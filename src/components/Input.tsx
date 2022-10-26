@@ -14,7 +14,8 @@ const Input: any = forwardRef<any>((props: any, ref) => {
       {...props}
       className={classNames(
         `block shadow-sm 
-        focus:ring-indigo-500 focus:border-indigo-500 
+        focus:ring-primary
+        text-primary accent-current
         sm:text-sm
         disabled:bg-gray-200 
         disabled:dark:bg-gray-900 
@@ -33,7 +34,7 @@ Input.Textarea = forwardRef<any>((props, ref) => {
       ref={ref}
       {...props}
       className={`block w-full shadow-sm 
-      focus:ring-indigo-500 focus:border-indigo-500 
+      focus:ring-primary focus:border-primary 
       sm:text-sm 
       border-gray-300 dark:border-gray-500 rounded-md 
       dark:bg-gray-700`}
@@ -85,7 +86,7 @@ Input.Select = forwardRef<any>((props: any, ref) => {
       {...props}
       ref={ref}
       className={classNames(
-        'bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+        'bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm',
         props.className,
       )}
     >
@@ -112,7 +113,7 @@ Input.InlineLabel = forwardRef<any>((props: any, ref) => {
       <input
         ref={ref}
         className={classNames(
-          'flex-1 block w-full min-w-0 rounded-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 dark:border-gray-500 dark:bg-gray-700',
+          'flex-1 block w-full min-w-0 rounded-none focus:ring-primary focus:border-primary sm:text-sm border-gray-300 dark:border-gray-500 dark:bg-gray-700',
           !$right ? 'rounded-r-md' : 'rounded-l-md',
         )}
         {...inputProps}

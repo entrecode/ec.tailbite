@@ -42,3 +42,47 @@ export function color(inputString: any, percentage: number = 0.4): string {
 
   return hex;
 }
+
+export function rgbaContrastColor(R, G, B, A) {
+  const brightness = R * 0.299 + G * 0.587 + B * 0.114 + (1 - A) * 255;
+  return brightness > 186 ? '#000000' : '#FFFFFF';
+}
+
+export function hexContrastColor(hex) {
+  let rgba = hexToRGBA(hex, 1);
+  const channels = rgbaChannels(rgba);
+  return rgbaContrastColor(...channels);
+}
+const isValidHex = (hex) => /^#([A-Fa-f0-9]{3,4}){1,2}$/.test(hex);
+
+const getChunksFromString = (st, chunkSize) => st.match(new RegExp(`.{${chunkSize}}`, 'g'));
+
+const convertHexUnitTo256 = (hexStr) => parseInt(hexStr.repeat(2 / hexStr.length), 16);
+
+const getAlphafloat = (a, alpha) => {
+  if (typeof a !== 'undefined') {
+    return a / 255;
+  }
+  if (typeof alpha != 'number' || alpha < 0 || alpha > 1) {
+    return 1;
+  }
+  return alpha;
+};
+
+const hexToRGBA = (hex, alpha) => {
+  if (!isValidHex(hex)) {
+    throw new Error('Invalid HEX');
+  }
+  const chunkSize = Math.floor((hex.length - 1) / 3);
+  const hexArr = getChunksFromString(hex.slice(1), chunkSize);
+  const [r, g, b, a] = hexArr.map(convertHexUnitTo256);
+  return `rgba(${r}, ${g}, ${b}, ${getAlphafloat(a, alpha)})`;
+};
+
+const rgbaChannels = (rgba): [number, number, number, number] => {
+  return rgba
+    .split('(')[1]
+    .split(')')[0]
+    .split(',')
+    .map((s) => parseFloat(s.trim()));
+};

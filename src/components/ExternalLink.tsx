@@ -20,7 +20,7 @@ function ExternalLink(props: {
   }
   return (
     <a
-      className={`inline-flex items-center group text-indigo-600 dark:text-indigo-300 whitespace-nowrap ${
+      className={`inline-flex items-center group underline whitespace-nowrap ${
         className || ''
       }`}
       href={href}

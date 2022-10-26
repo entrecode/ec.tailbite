@@ -30,6 +30,7 @@ import { SimpleSelectExample } from './components/SimpleSelect';
 import { SnippetExample } from './components/Snippet';
 import { StyledTabExample } from './components/StyledTab';
 import { TableExample } from './components/Table';
+import Tailbite from './components/Tailbite';
 import { TimePaginationExample } from './components/TimePagination';
 import { ToggleExample } from './components/Toggle';
 import { ToolyExample } from './components/Tooly';
@@ -84,17 +85,26 @@ const router = createBrowserRouter(
 
 export function Demo({ children, heading }) {
   return (
-    <Layout top={<Topnav />} left={<Sidenav />}>
-      <Section>
-        <Section.Sticky>
-          <Section.Container className="max-w-4xl flex justify-between items-center">
-            <Section.Heading>{heading}</Section.Heading>
-          </Section.Container>
-          <Section.Divider />
-        </Section.Sticky>
-        <Section.Container className="max-w-4xl">{children}</Section.Container>
-      </Section>
-    </Layout>
+    <Tailbite
+      environment={{
+        theme: 'dark',
+        colors: {
+          primary: '#ba443c',
+        },
+      }}
+    >
+      <Layout top={<Topnav />} left={<Sidenav />}>
+        <Section>
+          <Section.Sticky>
+            <Section.Container className="max-w-4xl flex justify-between items-center">
+              <Section.Heading>{heading}</Section.Heading>
+            </Section.Container>
+            <Section.Divider />
+          </Section.Sticky>
+          <Section.Container className="max-w-4xl">{children}</Section.Container>
+        </Section>
+      </Layout>
+    </Tailbite>
   );
 }
 

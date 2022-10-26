@@ -38,7 +38,7 @@ export default function FormattedInput({
         options={editorOptions}
         className={classNames(
           `block w-full shadow-sm border border-gray-300 dark:border-gray-500 rounded-md 
-        focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 p-2`,
+        focus:ring-primary focus:border-primary sm:text-sm dark:bg-gray-700 p-2`,
           className,
         )}
       />

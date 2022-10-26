@@ -5,39 +5,17 @@
 @layer base {
   body:not([data-theme]),
   [data-theme='light'] {
-    --color-primary: #ba443c;
-    --color-secondary: #0f67f7;
-    --color-accent: #fff133;
-    --color-base-100: white;
-    --color-base-200: #f9fafb; /* gray-50 */
-    --color-base-300: #e5e7eb; /* gray-200 */
-    --color-base-400: #d1d5db; /* gray-300 */
-    --color-base-900: #111827; /* gray-900 */
-    --color-neutral: #1a1a1a;
-    --color-info: #4aa8bf;
-    --color-success: #81328f;
-    --color-warning: #ef8234;
-    --color-error: #ea4034;
+    --color-bg: white;
+    --color-text: #111827;
   }
   [data-theme='dark'] {
-    --color-primary: #44adee;
-    --color-secondary: #e9498c;
-    --color-accent: #fff133;
-    --color-base-100: #111827; /* gray-900 */
-    --color-base-200: #1f2937; /* gray-800 */
-    --color-base-300: #4b5563; /* gray-600 */
-    --color-base-400: #6b7280; /* gray-500 */
-    --color-base-900: #f3f4f6; /* gray-100 */
-    --color-neutral: #1a1a1a;
-    --color-info: #4aa8bf;
-    --color-success: #81328f;
-    --color-warning: #ef8234;
-    --color-error: #ea4034;
+    --color-bg: #111827;
+    --color-text: #f3f4f6;
   }
   * {
-    color: var(--color-base-900);
+    color: var(--color-text);
   }
   body {
-    background-color: var(--color-base-100);
+    background-color: var(--color-bg);
   }
 }
