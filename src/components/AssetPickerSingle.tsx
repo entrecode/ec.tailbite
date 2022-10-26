@@ -42,7 +42,7 @@ export default function AssetPickerSingle(props: any) {
 
   const selection = (
     <div className="max-w-[200px]">
-      <div className="bg-base-300 rounded-md p-0 aspect-[4/3] overflow-hidden relative group">
+      <div className="bg-gray-200 dark:bg-gray-800 rounded-md p-0 aspect-[4/3] overflow-hidden relative group">
         {!!selectedAsset?.file && !currentlyUploadedFile && (
           <>
             {galleryImage}

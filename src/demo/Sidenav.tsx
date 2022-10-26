@@ -25,8 +25,8 @@ function NavLink({ children, $active, ...rest }: any) {
     <a
       {...rest}
       className={classNames(
-        'p-3 border-b border-base-200 cursor-pointer flex space-x-1 items-center',
-        $active ? 'bg-base-900 text-base-100' : 'bg-base-100',
+        'p-3 border-b border-gray-200 dark:border-gray-700 cursor-pointer flex space-x-1 items-center',
+        $active ? 'dark:bg-gray-700 bg-gray-300' : 'dark:bg-gray-900 bg-gray-100',
       )}
     >
       {children}

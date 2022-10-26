@@ -4,9 +4,15 @@ import { useMemo, useState } from 'react';
 import Button from './Button';
 
 const activateTheme = (theme) => {
+  const html = document.querySelector('html');
   const body = document.querySelector('body');
   body!.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
+  if (theme.includes('dark')) {
+    html!.classList.add('dark');
+  } else {
+    html!.classList.remove('dark');
+  }
 };
 
 const initTheme = (defaultTheme = 'light'): string => {
@@ -25,7 +31,6 @@ function ThemeToggle({ defaultTheme = 'light', otherTheme = 'dark' }) {
         const newTheme = theme === defaultTheme ? otherTheme : defaultTheme;
         activateTheme(newTheme);
         setTheme(newTheme);
-        console.log('new theme', newTheme);
       }}
     >
       {theme !== defaultTheme ? <SunIcon className="w-5 h-5" /> : <MoonIcon className="w-5 h-5" />}

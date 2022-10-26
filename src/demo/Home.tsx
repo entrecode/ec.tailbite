@@ -2,7 +2,7 @@ import { ReactComponent as Readme } from '../../README.md';
 
 function Home() {
   return (
-    <div className="prose">
+    <div className="prose dark:prose-invert">
       <Readme />
     </div>
   );

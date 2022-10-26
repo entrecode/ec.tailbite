@@ -49,14 +49,17 @@ export default function AssetPickerMulti(props: {
         ) : (
           <div className="grid grid-cols-2 gap-4">
             {currentlyUploading?.map((file: any, i) => (
-              <div key={i} className="bg-gray-500 rounded-md p-0 aspect-[4/3] overflow-hidden relative group">
+              <div
+                key={i}
+                className="bg-gray-200 dark:bg-gray-800 rounded-md p-0 aspect-[4/3] overflow-hidden relative group"
+              >
                 <div className="overflow-hidden relative p-4 text-sm">Upload: {file.name}</div>
               </div>
             ))}
             {selectedAssets?.items?.map((asset) => (
               <div
                 key={asset.assetID}
-                className="bg-gray-500 rounded-md p-0 aspect-[4/3] overflow-hidden relative group"
+                className="bg-gray-200 dark:bg-gray-800 rounded-md p-0 aspect-[4/3] overflow-hidden relative group"
               >
                 <Img src={fileVariant(asset, 400)} className="h-full" />
                 <div className="absolute top-2 right-2 space-y-2 group-hover:opacity-100 opacity-0">
@@ -67,7 +70,7 @@ export default function AssetPickerMulti(props: {
               </div>
             ))}
             {!currentlyUploading.length && (
-              <div className="bg-gray-500 rounded-md p-0 aspect-[4/3] overflow-hidden relative">
+              <div className="bg-gray-200 dark:bg-gray-800 rounded-md p-0 aspect-[4/3] overflow-hidden relative">
                 <div className="flex h-full justify-center items-center cursor-pointer" onClick={() => setOpen(true)}>
                   <div className="flex gap-2">
                     <PencilIcon className="w-4 h-4" />
