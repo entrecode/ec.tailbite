@@ -3,8 +3,8 @@ import { hexContrastColor } from '../util/color';
 
 declare interface ColorConfig {
   dark?: boolean;
-  primary: string;
-  secondary: string;
+  primary?: string;
+  secondary?: string;
   accent?: string;
   text?: string;
   darkText?: string;
@@ -37,8 +37,8 @@ declare interface TailbiteEnvironment {
   shortID?: string;
   accountServerUrl?: string; // see PasswortReset
   clubappApiUrl?: string; // see useClubappAPI
-  theme: string;
-  colors: ColorConfig;
+  theme?: string;
+  colors?: ColorConfig;
   setTheme?: (theme: string) => void;
 }
 

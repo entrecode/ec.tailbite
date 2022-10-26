@@ -101,9 +101,6 @@ export function AssetPickerMultiExample() {
       environment={{
         shortID: '83cc6374',
         env: 'stage',
-        colors: {
-          primary: '#ba443c',
-        },
       }}
     >
       <AssetPickerMulti group="test" value={assets} onChange={setAssets} />

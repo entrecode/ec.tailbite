@@ -45,7 +45,7 @@ export function useSession() {
  * ```
  */
 function useSdk() {
-  const { env, shortID } = useTailbite();
+  const { env, shortID = null } = useTailbite();
 
   const { data: api } = usePublicAPI({
     shortID,
