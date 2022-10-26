@@ -8,12 +8,16 @@ import { AutofillExample } from './components/Autofill';
 import { BackendSelectExample } from './components/BackendSelect';
 import { ButtonExample } from './components/Button';
 import { CalendarInputExample } from './components/CalendarInput';
+import { CardExample } from './components/Card';
+import { ChipExample } from './components/Chip';
+import { ColorPickerExample } from './components/ColorPicker';
 import { ConfirmDeleteExample } from './components/ConfirmDelete';
 import { CopyLinkExample } from './components/CopyLink';
 import { DataListExample } from './components/DataList';
 import { DraggableExample } from './components/Draggable';
 import { DropdownExample } from './components/Dropdown';
 import { EmptyListExample } from './components/EmptyList';
+import { FormExample } from './components/Form';
 import { JSONInputExample } from './components/JSONInput';
 import Layout from './components/Layout';
 import { ModalExample } from './components/Modal';
@@ -27,6 +31,7 @@ import { SnippetExample } from './components/Snippet';
 import { StyledTabExample } from './components/StyledTab';
 import { TableExample } from './components/Table';
 import { TimePaginationExample } from './components/TimePagination';
+import { ToggleExample } from './components/Toggle';
 import { ToolyExample } from './components/Tooly';
 import Home from './demo/Home';
 import Sidenav from './demo/Sidenav';
@@ -41,6 +46,11 @@ export const routes = [
   { path: 'AssetPickerMulti', element: <AssetPickerMultiExample /> },
   { path: 'Accordion', element: <Accordion.Example /> },
   { path: 'Button', element: <ButtonExample /> },
+  { path: 'Card', element: <CardExample /> },
+  { path: 'Chip', element: <ChipExample /> },
+  { path: 'ColorPicker', element: <ColorPickerExample /> },
+  { path: 'Form', element: <FormExample /> },
+  { path: 'Toggle', element: <ToggleExample /> },
   { path: 'CalendarInput', element: <CalendarInputExample /> },
   { path: 'ConfirmDelete', element: <ConfirmDeleteExample /> },
   { path: 'CopyLink', element: <CopyLinkExample /> },
@@ -73,7 +83,6 @@ const router = createBrowserRouter(
 );
 
 export function Demo({ children, heading }) {
-  const location = useLocation();
   return (
     <Layout top={<Topnav />} left={<Sidenav />}>
       <Section>
