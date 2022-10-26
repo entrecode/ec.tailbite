@@ -74,6 +74,10 @@ Wrap your App in `Tailbite` like this:
 <Tailbite environment={{ shortID: '83cc6374', env: 'stage' }}>{/* your app */}</Tailbite>
 ```
 
+### Theming
+
+Tailwind will run in dark mode when your theme contains the word dark!
+
 ## Dev Notes
 
 ### Build
