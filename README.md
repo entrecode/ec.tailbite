@@ -22,7 +22,7 @@ Replace `YOURTOKEN` with the generated PAT
 ### 3. open a new terminal and run
 
 ```sh
-npm install @entrecode/tailbite --save
+npm install @entrecode/ec.tailbite --save
 ```
 
 ### 4. configure styles
