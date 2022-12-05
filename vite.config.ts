@@ -33,8 +33,8 @@ export default defineConfig({
         // index: path.resolve(__dirname, 'src', 'index.ts'),
         ...chunks,
       },
-      formats: ['es' /* , 'cjs' */],
-      // fileName: (ext) => `index.${ext}.js`,
+      formats: ['es', 'cjs'],
+      // fileName: (ext, entryName) => `${entryName}.${ext === 'es' ? '' : `${ext}.`}js`,
       // for UMD name: 'GlobalName'
     },
     rollupOptions: {
