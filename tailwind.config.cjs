@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        current: 'currentColor',
         primary: 'var(--color-primary)',
         'primary-contrast': 'var(--color-primary-contrast)',
         secondary: 'var(--color-secondary)',
