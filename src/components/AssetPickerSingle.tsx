@@ -12,11 +12,12 @@ import { AssetDropzone } from './AssetDropzone';
 import Img from './Img';
 import Ink from './Ink';
 import Tailbite from './Tailbite';
+import classNames from '../util/classNames';
 
 // TODO: storybook?
 
 export default function AssetPickerSingle(props: any) {
-  const { value, group, onChange, children } = props;
+  const { value, group, onChange, children, className } = props;
   const { api } = useSdk();
   const [open, setOpen] = useState(false);
   const [currentlyUploadedFile, setCurrentlyUploadedFile] = useState<any>();
@@ -41,7 +42,7 @@ export default function AssetPickerSingle(props: any) {
   }, [source, selectedAsset?.title, handleClick, handleRemove, selectedAsset?.file, currentlyUploadedFile]);
 
   const selection = (
-    <div className="max-w-[200px]">
+    <div className={classNames('max-w-[200px]', className)}>
       <div className="bg-gray-200 dark:bg-gray-800 rounded-md p-0 aspect-[4/3] overflow-hidden relative group">
         {!!selectedAsset?.file && !currentlyUploadedFile && (
           <>
