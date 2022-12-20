@@ -9,8 +9,8 @@ export interface UseEntryProps {
 }
 
 function useEntry(props: UseEntryProps): SWRResponse<EntryResource, any> {
-  const { model, id } = props;
+  const { model, id, swrOptions } = props;
   const { api } = useSdk();
-  return useSWR(api && model && id ? ['useEntry', model, id] : null, () => api!.entry(model, id));
+  return useSWR(api && model && id ? ['useEntry', model, id] : null, () => api!.entry(model, id), swrOptions);
 }
 export default useEntry;
