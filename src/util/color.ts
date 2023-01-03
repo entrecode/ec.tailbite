@@ -49,6 +49,9 @@ export function rgbaContrastColor(R, G, B, A) {
 }
 
 export function hexContrastColor(hex) {
+  if (!hex) {
+    return 'black';
+  }
   let rgba = hexToRGBA(hex, 1);
   const channels = rgbaChannels(rgba);
   return rgbaContrastColor(...channels);

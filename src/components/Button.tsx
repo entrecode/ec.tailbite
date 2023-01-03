@@ -26,8 +26,7 @@ ${({ $primary, $secondary, $danger }) =>
 ${({ $primary }) =>
   $primary && 'border-transparent text-primary-contrast bg-primary hover:opacity-80 focus:ring-primary'}
 ${({ $secondary }) =>
-  $secondary &&
-  '`border-gray-300 dark:border-gray-800 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:ring-primary'}
+  $secondary && '`border-transparent text-primary-contrast bg-secondary hover:opacity-80 focus:ring-secondary'}
 ${({ $danger }) =>
   $danger &&
   'border-transparent text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'}

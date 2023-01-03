@@ -9,6 +9,7 @@ module.exports = {
         primary: 'var(--color-primary)',
         'primary-contrast': 'var(--color-primary-contrast)',
         secondary: 'var(--color-secondary)',
+        'secondary-contrast': 'var(--color-secondary-contrast)',
         accent: 'var(--color-accent)',
         neutral: 'var(--color-neutral)',
         bg: 'var(--color-bg)',

@@ -18,6 +18,7 @@ function getStyles(colors, isDark) {
     'color-primary': colors.primary,
     'color-primary-contrast': colors.primaryContrast || hexContrastColor(colors.primary),
     'color-secondary': colors.secondary,
+    'color-secondary-contrast': colors.secondaryContrast || hexContrastColor(colors.secondary),
     'color-accent': colors.accent,
     'color-bg': isDark ? colors.darkBg || '#111827' : colors.bg || 'white',
     'color-text': isDark ? colors.darkText || '#f3f4f6' : colors.text || '#111827',
