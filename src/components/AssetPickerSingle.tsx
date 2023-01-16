@@ -49,10 +49,10 @@ export default function AssetPickerSingle(props: any) {
             {galleryImage}
             <div className="absolute top-2 right-2 space-y-2 group-hover:opacity-100 opacity-0">
               <Ink.Primary onClick={() => setOpen(true)} className="cursor-pointer">
-                <PencilIcon className="w-6 h-6 bg-gray-800 p-1 rounded-md" />
+                <PencilIcon className="w-6 h-6 bg-primary text-primary-context p-1 rounded-md" />
               </Ink.Primary>
               <Ink.Error onClick={() => onChange(null)} className="cursor-pointer">
-                <TrashIcon className="mt-1 w-6 h-6 bg-gray-800 p-1 rounded-md" />
+                <TrashIcon className="mt-1 w-6 h-6 bg-primary text-primary-context p-1 rounded-md" />
               </Ink.Error>
             </div>
           </>

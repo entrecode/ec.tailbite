@@ -64,7 +64,7 @@ export default function AssetPickerMulti(props: {
                 <Img src={fileVariant(asset, 400)} className="h-full" />
                 <div className="absolute top-2 right-2 space-y-2 group-hover:opacity-100 opacity-0">
                   <Ink.Error onClick={() => onChange(null)} className="cursor-pointer">
-                    <TrashIcon className="w-6 h-6 bg-gray-800 p-1 rounded-md" />
+                    <TrashIcon className="w-6 h-6 bg-primary text-primary-context p-1 rounded-md" />
                   </Ink.Error>
                 </div>
               </div>
