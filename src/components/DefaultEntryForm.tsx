@@ -55,12 +55,12 @@ export function DefaultEntryFormButtons(props: UseEntryFormReturn) {
     <>
       <div className={classNames('flex', canDelete ? 'justify-between' : 'justify-end')}>
         {canDelete && (
-          <Button $secondary onClick={() => setDeleteOpen(true)}>
+          <Button $empty onClick={() => setDeleteOpen(true)}>
             <Ink.Error>Löschen</Ink.Error>
           </Button>
         )}
         <div className="flex space-x-2">
-          <Button $secondary onClick={() => cancel()}>
+          <Button $empty onClick={() => cancel()}>
             Abbrechen
           </Button>
           <Button $primary={canSubmit} $disabled={!canSubmit} onClick={onSubmit}>
@@ -111,7 +111,7 @@ export default function ${componentName}() {
       )
       .join('')}
       <div className="flex justify-end space-x-2">
-        <Button $secondary onClick={() => cancel()}>
+        <Button $empty onClick={() => cancel()}>
           Abbrechen
         </Button>
         <Button $primary={canSubmit} $disabled={!canSubmit} onClick={onSubmit}>

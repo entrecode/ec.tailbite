@@ -58,7 +58,7 @@ Input.Copy = forwardRef<any>((props: any, ref: any) => {
       />
       <Button
         className="rounded-l-none"
-        $secondary
+        $empty
         onClick={() => {
           navigator.clipboard.writeText(fieldRef.current?.value);
           setCopied(true);

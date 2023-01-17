@@ -17,7 +17,7 @@ function SortDropdown({ value, onChange }) {
         size: 'Größe (kleinste zuerst)', */
       }}
     >
-      <Button className="flex items-center space-x-2" $secondary>
+      <Button className="flex items-center space-x-2" $empty>
         <BarsArrowUpIcon className="w-5 h-5 pt-0.5" />
         <span>
           {{

@@ -38,7 +38,7 @@ function ConfirmModal() {
       </div>
       <div className="bg-gray-50 dark:bg-gray-900 px-4 py-3 sm:px-6 flex justify-end space-x-4 items-center rounded-b-lg">
         <Button
-          $secondary
+          $empty
           onClick={() => {
             const event = new CustomEvent(ConfirmModalActions.action, { detail: false });
             document.dispatchEvent(event);

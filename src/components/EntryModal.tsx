@@ -120,7 +120,7 @@ export function EntryModalExample2({ entry }) {
               </Form.Item>
             ))}
             <Modal.Buttons>
-              <Button $secondary onClick={() => (cancel as any)() && setOpen(false)}>
+              <Button $empty onClick={() => (cancel as any)() && setOpen(false)}>
                 Abbrechen
               </Button>
               <Button $primary={canSubmit} $disabled={!canSubmit} onClick={onSubmit}>

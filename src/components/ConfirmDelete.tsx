@@ -132,7 +132,7 @@ function ConfirmDelete(props: {
                 >
                   {isPending || pending ? <LocalLoader /> : deleteLabel}
                 </Button>
-                <Button $secondary type="button" className="w-full m-2" onClick={() => onClose?.()}>
+                <Button $empty type="button" className="w-full m-2" onClick={() => onClose?.()}>
                   {cancelLabel} {/*ref={cancelButtonRef} */}
                 </Button>
               </div>

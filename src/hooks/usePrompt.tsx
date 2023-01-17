@@ -44,7 +44,7 @@ export default function usePrompt() {
           />
           <div className="flex gap-3 mt-3 justify-end">
             <Button
-              $secondary
+              $empty
               onClick={() => {
                 userRejected.current?.('');
                 setPrompt(null);

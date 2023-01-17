@@ -99,7 +99,7 @@ function AssetSidebar({ asset, group, onClose, onSubmit }) {
                 </Form.Item.Body>
               </Form.Item>
               <div className="flex space-x-2 justify-end">
-                <Button $secondary onClick={() => onClose?.()}>
+                <Button $empty onClick={() => onClose?.()}>
                   Abbrechen
                 </Button>
                 <Button

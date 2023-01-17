@@ -52,10 +52,10 @@ export function Pagination(props: {
   return (
     <div className="flex items-center justify-between">
       <div className="flex-1 flex justify-between sm:hidden">
-        <Button $secondary onClick={() => changePage(Math.max(selectedPage - 1, 1))}>
+        <Button $empty onClick={() => changePage(Math.max(selectedPage - 1, 1))}>
           Zurück
         </Button>
-        <Button $secondary onClick={() => changePage(Math.min(selectedPage + 1, pageCount))}>
+        <Button $empty onClick={() => changePage(Math.min(selectedPage + 1, pageCount))}>
           Weiter
         </Button>
       </div>

@@ -124,12 +124,12 @@ function AssetManagerGallery({ onClickAsset, manager }: { onClickAsset: any; man
         {isEmpty && <p>Keine Medien vorhanden</p>}
         {!selection.isEmpty && (
           <div className="mb-6 flex items-center">
-            <Button className="rounded-none rounded-l-md" $secondary onClick={() => selection.clear()}>
+            <Button className="rounded-none rounded-l-md" $empty onClick={() => selection.clear()}>
               <Input type="checkbox" defaultChecked className="mr-2" />
               <span>{selection.size} ausgewählt</span>
             </Button>
             {manager.mode === 'bulkDelete' && (
-              <Button className="rounded-none rounded-r-md" $secondary onClick={handleBulkDelete}>
+              <Button className="rounded-none rounded-r-md" $empty onClick={handleBulkDelete}>
                 Dateien löschen{deleting && <Spinner className="ml-2" />}
               </Button>
             )}
