@@ -36,7 +36,8 @@ function CalendarInput({
   const inputRef = useRef<any>();
   const [container, setContainer] = useState<any>(null); // need this as state to make sure usePopper reruns
   const { styles, attributes } = usePopper(referenceElement, container, { placement: 'bottom-start' });
-  const [value, setValue] = useState(valueProp ? dayjs(valueProp).toISOString() : null);
+  const initialValue = valueProp && dayjs(valueProp).isValid() ? dayjs(valueProp).toISOString() : null;
+  const [value, setValue] = useState(initialValue);
   const [open, setOpen] = useState(false);
 
   // update internal value when valueProp changes from outside
@@ -86,13 +87,10 @@ function CalendarInput({
           }}
           onChange={(e) => {
             const day = dayjs(e.target.value, 'DD.MM.YYYY');
-            if (day.isValid()) {
-              console.log('valid', e.target.value);
-              setValue(day.toISOString());
-            } else {
-              console.log('invalid', e.target.value);
-              setValue(e.target.value);
-            }
+            let newValue: string | null = day.isValid() ? day.toISOString() : e.target.value;
+            newValue = newValue === '' ? null : newValue;
+            setValue(newValue);
+            /* day.isValid() && */ onChange?.(newValue);
           }}
           className={Form.Item.text}
         />
@@ -104,7 +102,9 @@ function CalendarInput({
             onChange={(day) => {
               if (day.isValid() || value === '') {
                 inputRef.current?.focus();
-                setValue(day.toISOString());
+                const newValue = day.toISOString();
+                setValue(newValue);
+                onChange?.(newValue);
               } else {
                 console.log('calendar date is not valid..', day);
               }
