@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Controller } from 'react-hook-form';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { usePopper } from 'react-popper';
 import useDocumentClick from '../hooks/useDocumentClick';
 import dayjs from '../util/dayjs';
+import Button from './Button';
 import Calendar from './Calendar';
 import Form from './Form';
 
@@ -21,6 +22,7 @@ const inputFormats = ['DD.MM.YYYY', 'D.M.YYYY', 'MM-DD-YYYY'];
  * />
  * ```
  */
+
 function CalendarInput({
   value: valueProp,
   onChange,
@@ -34,25 +36,31 @@ function CalendarInput({
   const inputRef = useRef<any>();
   const [container, setContainer] = useState<any>(null); // need this as state to make sure usePopper reruns
   const { styles, attributes } = usePopper(referenceElement, container, { placement: 'bottom-start' });
-  const [inputValue, setInputValue] = useState<string | null>(valueProp ? dayjs(valueProp).format(dateFormat) : '');
   const [value, setValue] = useState(valueProp ? dayjs(valueProp).toISOString() : null);
   const [open, setOpen] = useState(false);
 
+  // update internal value when valueProp changes from outside
   useEffect(() => {
-    const date = dayjs(inputValue, inputFormats);
-    if (date.isValid() || [null, ''].includes(inputValue)) {
-      const v = date.isValid() ? date.toISOString() : null;
-      setValue(v);
-      onChange?.(v);
-    } else {
-      console.warn('input date not valid', date);
-      // setValue(null);
-    }
-  }, [inputValue]);
-
-  useEffect(() => {
-    setInputValue(valueProp ? dayjs(valueProp).format(dateFormat) : null);
+    setValue((value) => {
+      if (valueProp !== value) {
+        return valueProp ?? null;
+      }
+      return value;
+    });
   }, [valueProp]);
+
+  // update inputValue when internal value changes
+  const inputValue = useMemo(() => {
+    if ([null, undefined, ''].includes(value)) {
+      return '';
+    }
+    const day = dayjs(value);
+    // only accept if value is a well formatted iso string
+    if (day.isValid() && day.toISOString() === value) {
+      return day.format(dateFormat);
+    }
+    return value; // invalid value while typing
+  }, [value]);
 
   const documentClick = useCallback(
     (e) => {
@@ -76,7 +84,16 @@ function CalendarInput({
             e.preventDefault();
             setOpen(true);
           }}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => {
+            const day = dayjs(e.target.value, 'DD.MM.YYYY');
+            if (day.isValid()) {
+              console.log('valid', e.target.value);
+              setValue(day.toISOString());
+            } else {
+              console.log('invalid', e.target.value);
+              setValue(e.target.value);
+            }
+          }}
           className={Form.Item.text}
         />
       </div>
@@ -86,8 +103,8 @@ function CalendarInput({
             value={value}
             onChange={(day) => {
               if (day.isValid() || value === '') {
-                setInputValue(day.isValid() ? day.format(dateFormat) : null);
                 inputRef.current?.focus();
+                setValue(day.toISOString());
               } else {
                 console.log('calendar date is not valid..', day);
               }
@@ -103,7 +120,9 @@ export function DateInput(props: any) {
   const { placeholder, control, name, rules } = props;
   return (
     <Controller
-      render={({ field }) => <CalendarInput placeholder={placeholder} value={field.value} onChange={field.onChange} />}
+      render={({ field }) => (
+        <CalendarInput placeholder={placeholder} value={field.value} onChange={(value) => field.onChange(value)} />
+      )}
       control={control}
       name={name}
       rules={rules}
@@ -114,9 +133,37 @@ export function DateInput(props: any) {
 export default CalendarInput;
 
 export function CalendarInputExample() {
+  const [value, setValue] = useState<string | null>(dayjs().toISOString());
   return (
     <div className="max-w-md">
-      <CalendarInput />
+      <CalendarInput value={value ?? undefined} onChange={(v) => setValue(v)} />
+    </div>
+  );
+}
+export function DateInputExample() {
+  const { control, watch, reset } = useForm({
+    /* defaultValues: {
+      date: dayjs().toISOString(),
+    }, */
+  });
+  useEffect(() => {
+    reset({
+      date: dayjs().toISOString(),
+    });
+  }, []);
+  const date = watch('date');
+
+  return (
+    <div className="max-w-md">
+      <Button
+        onClick={() => {
+          reset({ date: dayjs(date).add(1, 'day').toISOString() });
+        }}
+      >
+        + 1
+      </Button>
+      {date}
+      <DateInput control={control} name="date" />
     </div>
   );
 }

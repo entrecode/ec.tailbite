@@ -7,7 +7,7 @@ import { AssetPickerSingleExample } from './components/AssetPickerSingle';
 import { AutofillExample } from './components/Autofill';
 import { BackendSelectExample } from './components/BackendSelect';
 import { ButtonExample } from './components/Button';
-import { CalendarInputExample } from './components/CalendarInput';
+import { CalendarInputExample, DateInputExample } from './components/CalendarInput';
 import { CardExample } from './components/Card';
 import { ChipExample } from './components/Chip';
 import { ColorPickerExample } from './components/ColorPicker';
@@ -53,6 +53,7 @@ export const routes = [
   { path: 'Form', element: <FormExample /> },
   { path: 'Toggle', element: <ToggleExample /> },
   { path: 'CalendarInput', element: <CalendarInputExample /> },
+  { path: 'DateInput', element: <DateInputExample /> },
   { path: 'ConfirmDelete', element: <ConfirmDeleteExample /> },
   { path: 'CopyLink', element: <CopyLinkExample /> },
   { path: 'DataList', element: <DataListExample /> },
