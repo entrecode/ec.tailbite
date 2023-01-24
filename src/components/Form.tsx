@@ -135,7 +135,7 @@ block w-full shadow-sm
 focus:ring-primary focus:border-primary 
 sm:text-sm 
 border-gray-300 dark:border-gray-500 rounded-md 
-dark:bg-gray-700
+dark:bg-gray-700 dark:text-white
 `;
 
 Form.Sections = ({ children }) => <div className="space-y-6 pt-6 mb-6">{children}</div>;
