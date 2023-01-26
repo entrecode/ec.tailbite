@@ -1,14 +1,32 @@
+import { Dayjs } from 'dayjs';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { usePopper } from 'react-popper';
 import useDocumentClick from '../hooks/useDocumentClick';
-import dayjs from '../util/dayjs';
+import dayjs, { isStrictlyValid } from '../util/dayjs';
 import Button from './Button';
 import Calendar from './Calendar';
 import Form from './Form';
 
-const dateFormat = 'DD.MM.YYYY';
-const inputFormats = ['DD.MM.YYYY', 'D.M.YYYY', 'MM-DD-YYYY'];
+const dateFormat = 'DD.MM.YYYY'; // the format used for typing in the text input
+
+const formatDay = (day: Dayjs, outputFormat?: string) => {
+  if (!outputFormat) {
+    return day.toISOString();
+  }
+  return day.format(outputFormat);
+};
+
+const getValue = (input: string, inputFormat: string, outputFormat?: string): string | null => {
+  if (input === '') {
+    return null;
+  }
+  const day = dayjs(input, inputFormat);
+  if (!isStrictlyValid(input, inputFormat)) {
+    return input;
+  }
+  return formatDay(day, outputFormat);
+};
 
 /**
  *
@@ -25,10 +43,12 @@ const inputFormats = ['DD.MM.YYYY', 'D.M.YYYY', 'MM-DD-YYYY'];
 
 function CalendarInput({
   value: valueProp,
+  format,
   onChange,
   placeholder,
 }: {
-  value?: string;
+  value: string | null;
+  format?: string; // if not set, iso is assumed
   onChange?: (value: string | null) => void;
   placeholder?: string;
 }) {
@@ -36,8 +56,7 @@ function CalendarInput({
   const inputRef = useRef<any>();
   const [container, setContainer] = useState<any>(null); // need this as state to make sure usePopper reruns
   const { styles, attributes } = usePopper(referenceElement, container, { placement: 'bottom-start' });
-  const initialValue = valueProp && dayjs(valueProp).isValid() ? dayjs(valueProp).toISOString() : null;
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(valueProp);
   const [open, setOpen] = useState(false);
 
   // update internal value when valueProp changes from outside
@@ -52,16 +71,18 @@ function CalendarInput({
 
   // update inputValue when internal value changes
   const inputValue = useMemo(() => {
+    // use empty string for nullish values
     if ([null, undefined, ''].includes(value)) {
       return '';
     }
-    const day = dayjs(value);
-    // only accept if value is a well formatted iso string
-    if (day.isValid() && day.toISOString() === value) {
-      return day.format(dateFormat);
+    if (isStrictlyValid(value, format)) {
+      return dayjs(value, format).format(dateFormat);
     }
     return value; // invalid value while typing
   }, [value]);
+
+  // we need to iso version of the current value for Calendar
+  const isoValue = useMemo(() => (isStrictlyValid(value, format) ? dayjs(value, format).toISOString() : null), [value]);
 
   const documentClick = useCallback(
     (e) => {
@@ -86,11 +107,9 @@ function CalendarInput({
             setOpen(true);
           }}
           onChange={(e) => {
-            const day = dayjs(e.target.value, 'DD.MM.YYYY');
-            let newValue: string | null = day.isValid() ? day.toISOString() : e.target.value;
-            newValue = newValue === '' ? null : newValue;
+            const newValue = getValue(e.target.value, dateFormat, format);
             setValue(newValue);
-            /* day.isValid() && */ onChange?.(newValue);
+            onChange?.(newValue);
           }}
           className={Form.Item.text}
         />
@@ -98,11 +117,11 @@ function CalendarInput({
       {open && (
         <div ref={setContainer} {...attributes.popper} style={styles.popper} className="w-96 pt-2 z-50">
           <Calendar
-            value={value}
+            value={isoValue}
             onChange={(day) => {
               if (day.isValid() || value === '') {
                 inputRef.current?.focus();
-                const newValue = day.toISOString();
+                const newValue = formatDay(day, format);
                 setValue(newValue);
                 onChange?.(newValue);
               } else {
@@ -117,11 +136,16 @@ function CalendarInput({
 }
 
 export function DateInput(props: any) {
-  const { placeholder, control, name, rules } = props;
+  const { placeholder, control, name, rules, format } = props;
   return (
     <Controller
       render={({ field }) => (
-        <CalendarInput placeholder={placeholder} value={field.value} onChange={(value) => field.onChange(value)} />
+        <CalendarInput
+          placeholder={placeholder}
+          value={field.value}
+          onChange={(value) => field.onChange(value)}
+          format={format}
+        />
       )}
       control={control}
       name={name}
@@ -133,10 +157,20 @@ export function DateInput(props: any) {
 export default CalendarInput;
 
 export function CalendarInputExample() {
-  const [value, setValue] = useState<string | null>(dayjs().toISOString());
+  const [iso, setISO] = useState<string | null>(dayjs().toISOString());
+  const [nullish, setNullish] = useState<string | null>(null);
+  const [ddmmyyyy, setDdmmyyyy] = useState<string | null>('26.01.2023');
+  const [yyyymmdd, setYyyymmdd] = useState<string | null>('2023-01-26');
   return (
     <div className="max-w-md">
-      <CalendarInput value={value ?? undefined} onChange={(v) => setValue(v)} />
+      <h3>With null: {nullish}</h3>
+      <CalendarInput value={nullish} onChange={(v) => setNullish(v)} />
+      <h3>With ISO String: {iso}</h3>
+      <CalendarInput value={iso} onChange={(v) => setISO(v)} />
+      <h3>With DD.MM.YYYY: {ddmmyyyy}</h3>
+      <CalendarInput value={ddmmyyyy} onChange={(v) => setDdmmyyyy(v)} format="DD.MM.YYYY" />
+      <h3>With YYYY-MM-DD: {yyyymmdd}</h3>
+      <CalendarInput value={yyyymmdd} onChange={(v) => setYyyymmdd(v)} format="YYYY-MM-DD" />
     </div>
   );
 }
@@ -148,6 +182,7 @@ export function DateInputExample() {
   });
   useEffect(() => {
     reset({
+      null: null,
       date: dayjs().toISOString(),
     });
   }, []);

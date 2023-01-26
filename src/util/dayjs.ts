@@ -15,3 +15,17 @@ dayjs.extend(relativeTime);
 dayjs.extend(duration);
 
 export default dayjs;
+
+// returns true if the input string is a valid date of given format.
+// if no format is given, str is assumed to be an ISO date
+// this works around the fact that dayjs thinks "15.20.2023" is valid in "DD.MM.YYYY"...
+export const isStrictlyValid = (str?: string | null, format?: string) => {
+  if (!str) {
+    return false;
+  }
+  const day = format ? dayjs(str, format) : dayjs(str);
+  if (format) {
+    return day.format(format) === str;
+  }
+  return day.isValid() && day.toISOString() === str;
+};
