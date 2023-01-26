@@ -6,6 +6,14 @@ import BooleanIcon from './BooleanIcon';
 import Button from './Button';
 
 export const Table = ({ children, className }: { children: React.ReactNode; className?: string }) => (
+  <div className={classNames(className, 'py-2 align-middle inline-block min-w-full')}>
+    <div className="shadow overflow-hidden border-b border-gray-200 dark:border-gray-800 sm:rounded-lg">
+      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800 shadow">{children}</table>
+    </div>
+  </div>
+);
+
+export const TableOld = ({ children, className }: { children: React.ReactNode; className?: string }) => (
   <div className={classNames('overflow-x-auto sm:-mx-6 lg:-mx-8', className)}>
     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
       <div className="shadow overflow-hidden border-b border-gray-200 dark:border-gray-800 sm:rounded-lg">
