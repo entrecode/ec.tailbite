@@ -16,23 +16,13 @@ const Layout: FC<PropsWithChildren<any>> = ({ top, left, right, children, topCla
       )}
       <div className="flex grow overflow-hidden z-[11] ">
         {left && (
-          <div
-            className={cx(
-              'overflow-auto h-full bg-base border-r border-gray-300 dark:border-gray-700 shadow-lg',
-              leftClass,
-            )}
-          >
+          <div className={cx('h-full bg-base border-r border-gray-300 dark:border-gray-700 shadow-lg', leftClass)}>
             {left}
           </div>
         )}
         <div className="grow h-full overflow-auto">{children}</div>
         {right && (
-          <div
-            className={cx(
-              'overflow-auto h-full bg-base border-r border-gray-300 dark:border-gray-700 shadow-lg',
-              rightClass,
-            )}
-          >
+          <div className={cx('h-full bg-base border-r border-gray-300 dark:border-gray-700 shadow-lg', rightClass)}>
             {right}
           </div>
         )}
