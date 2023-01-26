@@ -7,7 +7,7 @@ const Layout: FC<PropsWithChildren<any>> = ({ top, left, right, children, topCla
       {top && (
         <div
           className={cx(
-            'flex-none h-16 items-center flex shadow-md p-1 z-[10] border-gray-300 dark:border-gray-700 border-b',
+            'flex-none h-16 items-center flex shadow-md p-1 z-[12] border-gray-300 dark:border-gray-700 border-b',
             topClass,
           )}
         >
