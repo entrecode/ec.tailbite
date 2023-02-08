@@ -17,7 +17,7 @@ function ColorPicker({
   /** the current color */
   value: string;
   /** called when the color changes */
-  onChange: (value: string) => void;
+  onChange: (value: string | null) => void;
   /** an array of preset colors to show */
   presetColors?: string[];
   /** additional class names */
