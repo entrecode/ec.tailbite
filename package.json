@@ -16,6 +16,7 @@
     "patch": "sh ./patch.sh"
   },
   "dependencies": {
+    "@remirror/extension-heading": "^2.0.11",
     "@remirror/extension-history": "^2.0.11",
     "@remirror/extension-list": "^2.0.14",
     "@remirror/pm": "^2.0.3",

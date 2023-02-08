@@ -1,4 +1,5 @@
 import { BulletListExtension, OrderedListExtension } from '@remirror/extension-list';
+import { HeadingExtension } from '@remirror/extension-heading';
 import { Remirror, useRemirror, useRemirrorContext } from '@remirror/react';
 import { forwardRef, Ref, useEffect, useImperativeHandle, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -9,7 +10,7 @@ import {
   UnderlineExtension,
   StrikeExtension,
   DropCursorExtension,
-  HeadingExtension,
+  // HeadingExtension,
   HistoryExtension,
   ImageExtension,
   LinkExtension,
