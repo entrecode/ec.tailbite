@@ -15,7 +15,7 @@ function ColorPicker({
   buttonClass,
 }: {
   /** the current color */
-  value: string;
+  value: string | null;
   /** called when the color changes */
   onChange: (value: string | null) => void;
   /** an array of preset colors to show */
@@ -33,7 +33,7 @@ function ColorPicker({
       <div className="rounded-full overflow-hidden border border-gray-300 dark:border-gray-600">
         <Popover.Button
           className={classNames('w-16 h-16 p-8 text-white flex items-center justify-center', buttonClass)}
-          style={{ backgroundColor: value }}
+          style={{ backgroundColor: value || 'white' }}
         >
           {/* <ColorSwatchIcon className="block w-8 h-8" /> */}
         </Popover.Button>
@@ -51,7 +51,7 @@ function ColorPicker({
         <Popover.Panel className="z-20 origin-bottom-left absolute left-0 mt-2">
           <SketchPicker
             presetColors={presetColors || []}
-            color={value}
+            color={value || 'white'}
             onChangeComplete={(value) => onChange(value?.hex || null)}
             onChange={(value) => setValue(value?.hex || null)}
           />
@@ -84,20 +84,20 @@ export function ColorPickerInput(props) {
 /**
  * Picker styled to work in Sidebar forms
  */
-export function InlinePicker({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+export function InlinePicker({ value, onChange }: { value: string | null; onChange: (value: string | null) => void }) {
   const [color, setColor] = React.useState(value);
 
   return (
     <Popover className="relative">
       <Popover.Button className="flex gap-2 items-center border dark:border-gray-800 border-gray-300 rounded-lg p-2">
-        <div className="w-7 h-7 border rounded-lg" style={{ backgroundColor: color }}></div>
+        <div className="w-7 h-7 border rounded-lg" style={{ backgroundColor: color || 'white' }}></div>
         <span style={{ fontFamily: 'monospace' }}>{color || 'none'}</span>
       </Popover.Button>
 
       <Popover.Panel className="absolute z-10">
         <SketchPicker
           presetColors={[]}
-          color={color}
+          color={color || 'white'}
           onChangeComplete={(value) => onChange(value?.hex || null)}
           onChange={(value) => setColor(value?.hex || null)}
         />
@@ -149,6 +149,6 @@ export function NativeColorPickerInput(props) {
 export default ColorPicker;
 
 export const ColorPickerExample = () => {
-  const [value, setValue] = useState('#FF00AA');
+  const [value, setValue] = useState<string | null>('#FF00AA');
   return <ColorPicker value={value} onChange={setValue} />;
 };
