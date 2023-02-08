@@ -26,19 +26,14 @@ const extensions = () => [
   new ItalicExtension(),
   new UnderlineExtension(),
   new StrikeExtension(),
-  new BulletListExtension(),
-  new OrderedListExtension(),
+  // new BulletListExtension(),
+  // new OrderedListExtension(),
   new ImageExtension({ enableResizing: true }),
   new DropCursorExtension(),
   new LinkExtension({ autoLink: true }),
-  new HistoryExtension(),
+  // new HistoryExtension(),
   new HeadingExtension(),
 ];
-// italic
-// strike
-// list
-// image
-// link
 
 const ImperativeHandle = forwardRef((_: unknown, ref: Ref<EditorRef>) => {
   const { setContent } = useRemirrorContext({

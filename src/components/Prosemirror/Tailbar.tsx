@@ -4,14 +4,14 @@ import {
   h1,
   h2,
   h3,
-  listOrdered,
-  listUnordered,
+  /* listOrdered,
+  listUnordered, */
   underline,
   strikethrough,
   italic,
   bold,
-  arrowGoBackFill,
-  arrowGoForwardFill,
+  /* arrowGoBackFill,
+  arrowGoForwardFill, */
 } from '@remirror/icons';
 import { createElement } from 'react';
 
@@ -30,16 +30,16 @@ function Tailbar() {
     toggleItalic,
     toggleUnderline,
     toggleStrike,
-    toggleBulletList,
-    toggleOrderedList,
+    /* toggleBulletList,
+    toggleOrderedList, */
     toggleHeading,
-    undo,
-    redo,
+    /* undo,
+    redo, */
   } = useCommands();
   const active = useActive();
   return (
     <div className="flex space-x-2">
-      <div className="whitespace-nowrap">
+      {/* <div className="whitespace-nowrap">
         <Button
           $disabled={!undo.enabled()}
           className="rounded-r-none"
@@ -60,7 +60,7 @@ function Tailbar() {
         >
           <Icon data={arrowGoForwardFill} className="w-4 h-4 fill-inherit" />
         </Button>
-      </div>
+      </div> */}
       <div className="whitespace-nowrap">
         <Button
           $disabled={!toggleBold.enabled()}
@@ -142,7 +142,7 @@ function Tailbar() {
           <Icon data={h3} className="w-4 h-4 fill-inherit" />
         </Button>
       </div>
-      <div className="whitespace-nowrap">
+      {/* <div className="whitespace-nowrap">
         <Button
           $disabled={!toggleBulletList.enabled()}
           $primary={active.bulletList()}
@@ -165,7 +165,8 @@ function Tailbar() {
         >
           <Icon data={listOrdered} className="w-4 h-4 fill-inherit" />
         </Button>
-      </div>
+      </div> */}
+
       {/* <Button
         $disabled={!toggleBulletList.enabled()}
         $primary={active.bulletList()}
