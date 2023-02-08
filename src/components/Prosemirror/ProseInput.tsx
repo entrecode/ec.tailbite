@@ -32,7 +32,7 @@ const extensions = () => [
   // new DropCursorExtension(),
   // new LinkExtension({ autoLink: true }),
   // new HistoryExtension(),
-  // new HeadingExtension(),
+  new HeadingExtension(),
 ];
 
 const ImperativeHandle = forwardRef((_: unknown, ref: Ref<EditorRef>) => {

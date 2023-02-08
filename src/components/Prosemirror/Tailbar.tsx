@@ -10,8 +10,8 @@ import {
   strikethrough,
   italic,
   bold,
-  /* arrowGoBackFill,
-  arrowGoForwardFill, */
+  arrowGoBackFill,
+  arrowGoForwardFill,
 } from '@remirror/icons';
 import { createElement } from 'react';
 
@@ -32,7 +32,7 @@ function Tailbar() {
     toggleStrike,
     // toggleBulletList,
     // toggleOrderedList,
-    // toggleHeading,
+    toggleHeading,
     // undo,
     // redo,
   } = useCommands();
@@ -107,7 +107,7 @@ function Tailbar() {
           <Icon data={underline} className="w-4 h-4 fill-inherit" />
         </Button>
       </div>
-      {/*<div className="whitespace-nowrap">
+      <div className="whitespace-nowrap">
         <Button
           $disabled={!toggleHeading.enabled({ level: 1 })}
           $primary={active.heading({ level: 1 })}
@@ -142,7 +142,7 @@ function Tailbar() {
           <Icon data={h3} className="w-4 h-4 fill-inherit" />
         </Button>
       </div>
-      <div className="whitespace-nowrap">
+      {/*<div className="whitespace-nowrap">
         <Button
           $disabled={!toggleBulletList.enabled()}
           $primary={active.bulletList()}
