@@ -16,8 +16,11 @@
     "patch": "sh ./patch.sh"
   },
   "dependencies": {
+    "@remirror/extension-drop-cursor": "^2.0.11",
     "@remirror/extension-heading": "^2.0.11",
     "@remirror/extension-history": "^2.0.11",
+    "@remirror/extension-image": "^2.1.7",
+    "@remirror/extension-link": "^2.0.13",
     "@remirror/extension-list": "^2.0.14",
     "@remirror/pm": "^2.0.3",
     "@remirror/react": "^2.0.25",

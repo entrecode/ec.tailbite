@@ -1,21 +1,14 @@
 import { BulletListExtension, OrderedListExtension } from '@remirror/extension-list';
 import { HistoryExtension } from '@remirror/extension-history';
 import { HeadingExtension } from '@remirror/extension-heading';
+import { ImageExtension } from '@remirror/extension-image';
+import { LinkExtension } from '@remirror/extension-link';
+import { DropCursorExtension } from '@remirror/extension-drop-cursor';
 import { Remirror, useRemirror, useRemirrorContext } from '@remirror/react';
 import { forwardRef, Ref, useEffect, useImperativeHandle, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { htmlToProsemirrorNode, prosemirrorNodeToHtml } from 'remirror';
-import {
-  BoldExtension,
-  ItalicExtension,
-  UnderlineExtension,
-  StrikeExtension,
-  DropCursorExtension,
-  // HeadingExtension,
-  // HistoryExtension,
-  ImageExtension,
-  LinkExtension,
-} from 'remirror/extensions';
+import { BoldExtension, ItalicExtension, UnderlineExtension, StrikeExtension } from 'remirror/extensions';
 import Button from '../Button';
 import Tailbar from './Tailbar';
 
@@ -30,9 +23,9 @@ const extensions = () => [
   new StrikeExtension(),
   new BulletListExtension(),
   new OrderedListExtension(),
-  // new ImageExtension({ enableResizing: true }),
-  // new DropCursorExtension(),
-  // new LinkExtension({ autoLink: true }),
+  new ImageExtension({ enableResizing: true }),
+  new DropCursorExtension(),
+  new LinkExtension({ autoLink: true }),
   new HistoryExtension(),
   new HeadingExtension(),
 ];
