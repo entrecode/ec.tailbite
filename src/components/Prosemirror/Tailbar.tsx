@@ -27,9 +27,9 @@ function Tailbar() {
   const {
     focus,
     toggleBold,
-    // toggleItalic,
-    // toggleUnderline,
-    // toggleStrike,
+    toggleItalic,
+    toggleUnderline,
+    toggleStrike,
     // toggleBulletList,
     // toggleOrderedList,
     // toggleHeading,
@@ -60,20 +60,20 @@ function Tailbar() {
         >
           <Icon data={arrowGoForwardFill} className="w-4 h-4 fill-inherit" />
         </Button>
-      </div> 
-      <div className="whitespace-nowrap">*/}
-      <Button
-        $disabled={!toggleBold.enabled()}
-        $primary={active.bold()}
-        className="rounded-r-none bold"
-        onClick={() => {
-          toggleBold();
-          focus();
-        }}
-      >
-        <Icon data={bold} className="w-4 h-4 fill-inherit" />
-      </Button>
-      {/*<Button
+      </div> */}
+      <div className="whitespace-nowrap">
+        <Button
+          $disabled={!toggleBold.enabled()}
+          $primary={active.bold()}
+          className="rounded-r-none bold"
+          onClick={() => {
+            toggleBold();
+            focus();
+          }}
+        >
+          <Icon data={bold} className="w-4 h-4 fill-inherit" />
+        </Button>
+        <Button
           $disabled={!toggleItalic.enabled()}
           $primary={active.italic()}
           className="rounded-none italic"
@@ -107,7 +107,7 @@ function Tailbar() {
           <Icon data={underline} className="w-4 h-4 fill-inherit" />
         </Button>
       </div>
-      <div className="whitespace-nowrap">
+      {/*<div className="whitespace-nowrap">
         <Button
           $disabled={!toggleHeading.enabled({ level: 1 })}
           $primary={active.heading({ level: 1 })}

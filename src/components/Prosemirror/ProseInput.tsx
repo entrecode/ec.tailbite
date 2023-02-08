@@ -5,14 +5,14 @@ import { Controller, useForm } from 'react-hook-form';
 import { htmlToProsemirrorNode, prosemirrorNodeToHtml } from 'remirror';
 import {
   BoldExtension,
+  ItalicExtension,
+  UnderlineExtension,
+  StrikeExtension,
   DropCursorExtension,
   HeadingExtension,
   HistoryExtension,
   ImageExtension,
-  ItalicExtension,
   LinkExtension,
-  StrikeExtension,
-  UnderlineExtension,
 } from 'remirror/extensions';
 import Button from '../Button';
 import Tailbar from './Tailbar';
@@ -23,9 +23,9 @@ export interface EditorRef {
 
 const extensions = () => [
   new BoldExtension(),
-  // new ItalicExtension(),
-  // new UnderlineExtension(),
-  // new StrikeExtension(),
+  new ItalicExtension(),
+  new UnderlineExtension(),
+  new StrikeExtension(),
   // new BulletListExtension(),
   // new OrderedListExtension(),
   // new ImageExtension({ enableResizing: true }),
