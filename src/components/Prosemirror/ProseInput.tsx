@@ -21,7 +21,7 @@ export interface EditorRef {
   setContent: (content: any) => void;
 }
 
-const extensions = () => [
+/* const extensions = () => [
   new BoldExtension(),
   new ItalicExtension(),
   new UnderlineExtension(),
@@ -33,7 +33,7 @@ const extensions = () => [
   new LinkExtension({ autoLink: true }),
   // new HistoryExtension(),
   new HeadingExtension(),
-];
+]; */
 
 const ImperativeHandle = forwardRef((_: unknown, ref: Ref<EditorRef>) => {
   const { setContent } = useRemirrorContext({
@@ -48,7 +48,7 @@ const ProseEditor = (props: any) => {
   const { value: valueProp, onChange } = props as any;
   const editorRef = useRef<EditorRef | null>(null);
   const { manager, state, setState } = useRemirror({
-    extensions,
+    extensions: () => [],
     stringHandler: 'html',
     content: valueProp,
   });
@@ -81,7 +81,7 @@ const ProseEditor = (props: any) => {
           internalValue.current = html;
         }}
       >
-        <Tailbar />
+        {/* <Tailbar /> */}
         <ImperativeHandle ref={editorRef} />
       </Remirror>
     </div>
