@@ -23,6 +23,7 @@ import Layout from './components/Layout';
 import { ModalExample } from './components/Modal';
 import { OptionsMenuExample } from './components/OptionsMenu';
 import { PageErrorExample } from './components/PageError';
+import { ProseInputExample } from './components/Prosemirror/ProseInput';
 import { SearchbarExample } from './components/Searchbar';
 import Section, { SectionExample } from './components/Section';
 import { SidebarExample } from './components/Sidebar';
@@ -64,6 +65,7 @@ export const routes = [
   { path: 'JSONInput', element: <JSONInputExample /> },
   { path: 'Modal', element: <ModalExample /> },
   { path: 'OptionsMenu', element: <OptionsMenuExample /> },
+  { path: 'ProseInput', element: <ProseInputExample /> },
   { path: 'PageError', element: <PageErrorExample /> },
   { path: 'Searchbar', element: <SearchbarExample /> },
   { path: 'Section', element: <SectionExample /> },

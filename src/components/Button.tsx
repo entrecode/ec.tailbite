@@ -31,7 +31,7 @@ ${({ $danger }) =>
   $danger &&
   'border-transparent text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'}
 ${({ $empty }) => $empty && 'border-transparent dark:text-white hover:bg-gray-200 dark:hover:bg-gray-500'}
-${({ $disabled }) => $disabled && 'cursor-not-allowed opacity-90 grayscale'}`;
+${({ $disabled }) => $disabled && 'cursor-not-allowed opacity-50 grayscale'}`;
 
 const Button = ({
   $disabled = false,
