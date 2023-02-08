@@ -1,4 +1,5 @@
 import { BulletListExtension, OrderedListExtension } from '@remirror/extension-list';
+import { HistoryExtension } from '@remirror/extension-history';
 import { HeadingExtension } from '@remirror/extension-heading';
 import { Remirror, useRemirror, useRemirrorContext } from '@remirror/react';
 import { forwardRef, Ref, useEffect, useImperativeHandle, useRef } from 'react';
@@ -11,7 +12,7 @@ import {
   StrikeExtension,
   DropCursorExtension,
   // HeadingExtension,
-  HistoryExtension,
+  // HistoryExtension,
   ImageExtension,
   LinkExtension,
 } from 'remirror/extensions';
@@ -32,7 +33,7 @@ const extensions = () => [
   // new ImageExtension({ enableResizing: true }),
   // new DropCursorExtension(),
   // new LinkExtension({ autoLink: true }),
-  // new HistoryExtension(),
+  new HistoryExtension(),
   new HeadingExtension(),
 ];
 

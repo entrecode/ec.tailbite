@@ -33,13 +33,13 @@ function Tailbar() {
     // toggleBulletList,
     // toggleOrderedList,
     toggleHeading,
-    // undo,
-    // redo,
+    undo,
+    redo,
   } = useCommands();
   const active = useActive();
   return (
     <div className="flex space-x-2">
-      {/* <div className="whitespace-nowrap">
+      <div className="whitespace-nowrap">
         <Button
           $disabled={!undo.enabled()}
           className="rounded-r-none"
@@ -60,7 +60,7 @@ function Tailbar() {
         >
           <Icon data={arrowGoForwardFill} className="w-4 h-4 fill-inherit" />
         </Button>
-      </div> */}
+      </div>
       <div className="whitespace-nowrap">
         <Button
           $disabled={!toggleBold.enabled()}
