@@ -22,22 +22,25 @@ function EntryPickerSolo({
   const { open: showDropdown, setOpen: setShowDropdown } = useFloatingElement(clicktrap);
   const { addable, query, setQuery, isValidating } = useEntrySearch({ model, search, searchEmpty: true });
   const [selectedEntry, setSelectedEntry] = useState<EntryResource | null>();
+  const shouldLoad = value !== (selectedEntry?.id || null);
   const {
     // data: selectedEntry,
-    isValidating: selectionLoading,
+    isValidating: isValidatingSelection,
     // mutate,
   } = useEntry({
-    model,
+    model: shouldLoad ? model : null,
     id: value,
     swrOptions: {
       onSuccess: (entry) => setSelectedEntry(entry),
       revalidateOnFocus: false,
     },
   });
+  const isLoadingSelection = shouldLoad || isValidatingSelection;
+  const isEmptySelection = !isLoadingSelection && !selectedEntry;
   return (
     <div className="space-y-4">
       <div className="max-w-full">
-        {selectedEntry && (
+        {!isValidatingSelection && selectedEntry && (
           <Tag
             label={selectedEntry[label]}
             onX={
@@ -50,19 +53,13 @@ function EntryPickerSolo({
             }
           />
         )}
-        {!selectedEntry && selectionLoading && <Tag label="..." />}
+        {isLoadingSelection && <Tag label="Laden..." />}
+        {isEmptySelection && <Tag label="Nichts ausgewählt" />}
       </div>
-      <div className="space-y-1" ref={clicktrap}>
-        <div className="relative">
-          <Searchbar value={query} onChange={setQuery} onFocus={() => setShowDropdown(true)} />
-          {isValidating && (
-            <div className="absolute right-2 top-2">
-              <Spinner />
-            </div>
-          )}
-        </div>
+      <div className="relative space-y-1" ref={clicktrap}>
+        <Searchbar value={query} onChange={setQuery} onFocus={() => setShowDropdown(true)} loading={isValidating} />
         {showDropdown && (
-          <div className="absolute rounded-md shadow z-[200] bg-bg p-2 w-full">
+          <div className="absolute top-10 rounded-md shadow z-[200] bg-bg p-2 w-full">
             <div className="space-y-1">
               {addable?.map((entry, i) => (
                 <div
@@ -72,16 +69,16 @@ function EntryPickerSolo({
                     i && 'border-t border-gray-200',
                   )}
                   onClick={() => {
-                    // mutate(entry, { optimisticData: entry, populateCache: true, revalidate: false });
                     onChange(value !== entry.id ? entry.id : null);
                     setSelectedEntry(value !== entry.id ? entry : null);
                     setShowDropdown(false);
                   }}
                 >
-                  {value === entry.id ? <MinusIcon className="w-6 h-6" /> : <PlusIcon className="w-6 h-6" />}
+                  <PlusIcon className={classNames('w-6 h-6', value === entry.id && 'rotate-45')} />
                   <span>{entry[label]}</span>
                 </div>
               ))}
+              {!isValidating && addable && !addable.length && 'Kein Ergebnis'}
             </div>
           </div>
         )}
