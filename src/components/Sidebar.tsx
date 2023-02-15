@@ -93,6 +93,10 @@ Sidebar.Body = ({ children }: any) => {
   return <div className="pb-6 relative flex-1 px-4 sm:px-6">{children}</div>;
 };
 
+Sidebar.Footer = ({ children }) => {
+  return <div className="sticky bottom-0 bg-white px-6 py-3 border-t border-gray-200">{children}</div>;
+};
+
 export default Sidebar;
 
 export function SidebarExample() {

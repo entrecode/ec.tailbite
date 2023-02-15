@@ -21,9 +21,20 @@ function Searchbar(props: {
   placeholder?: string;
   inputClassName?: string;
   onSearchClick?: () => void;
+  onFocus?: (e: any) => void;
+  onBlur?: (e: any) => void;
   autoFocus?: boolean;
 }) {
-  const { value = '', onChange, placeholder = 'Suchen...', onSearchClick, inputClassName, autoFocus } = props;
+  const {
+    value = '',
+    onChange,
+    placeholder = 'Suchen...',
+    onSearchClick,
+    inputClassName,
+    autoFocus,
+    onFocus,
+    onBlur,
+  } = props;
   return (
     <div className="relative rounded-md shadow-sm">
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -38,6 +49,8 @@ function Searchbar(props: {
       )}
       <input
         type="text"
+        onFocus={onFocus}
+        onBlur={onBlur}
         value={value}
         ref={(el) => setTimeout(() => autoFocus && el?.focus(), 0)}
         onKeyDown={(e) => onSearchClick && e.code === 'Enter' && onSearchClick()}

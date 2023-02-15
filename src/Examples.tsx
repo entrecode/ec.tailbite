@@ -17,6 +17,7 @@ import { DataListExample } from './components/DataList';
 import { DraggableExample } from './components/Draggable';
 import { DropdownExample } from './components/Dropdown';
 import { EmptyListExample } from './components/EmptyList';
+import { EntryPickerExample } from './components/EntryPicker/EntryPicker';
 import { FormExample } from './components/Form';
 import { JSONInputExample } from './components/JSONInput';
 import Layout from './components/Layout';
@@ -61,6 +62,7 @@ export const routes = [
   { path: 'Draggable', element: <DraggableExample /> },
   { path: 'Dropdown', element: <DropdownExample /> },
   { path: 'EmptyList', element: <EmptyListExample /> },
+  { path: 'EntryPicker', element: <EntryPickerExample /> },
   // { path: 'EntryModal', element: <EntryModalExample /> },
   { path: 'JSONInput', element: <JSONInputExample /> },
   { path: 'Modal', element: <ModalExample /> },
