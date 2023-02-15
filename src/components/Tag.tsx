@@ -11,10 +11,10 @@ function Tag({ label, onX, onClick }: { label: string; onX?: () => void; onClick
       onClick={onClick}
     >
       <div className="flex items-center">
-        {label}
         <div className="cursor-pointer hover:bg-gray-100 rounded-full" onClick={onX}>
           {onX && <XMarkIcon className="w-5 h-5" />}
         </div>
+        {label}
       </div>
     </div>
   );
