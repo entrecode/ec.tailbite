@@ -1,10 +1,12 @@
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
+import EntryList from 'ec.sdk/lib/resources/publicAPI/EntryList';
 import EntryResource from 'ec.sdk/lib/resources/publicAPI/EntryResource';
 import { useMemo, useRef, useState } from 'react';
 import useEntryList from '../../hooks/useEntryList';
 import useEntrySearch from '../../hooks/useEntrySearch';
 import useFloatingElement from '../../hooks/useFloatingElement';
 import classNames from '../../util/classNames';
+import { laggySWR } from '../../util/laggySWR';
 import Searchbar from '../Searchbar';
 import Spinner from '../Spinner';
 import Tag from '../Tag';
@@ -26,17 +28,15 @@ function EntryPickerMulti({
     exclude: value,
     search,
   });
-  const { items: selectedEntriesUnsorted, isValidating: isValidatingSelection } = useEntryList({
+  const [selectedEntries, setSelectedEntries] = useState<EntryResource[]>([]);
+  const { isValidating: isValidatingSelection } = useEntryList({
     model: value.length ? model : null,
     filterOptions: { id: { any: value } },
+    swrOptions: {
+      revalidateOnFocus: false,
+      onSuccess: (data) => setSelectedEntries(value.map((id) => data.items.find((e) => e.id === id) as EntryResource)),
+    },
   });
-  const selectedEntries = useMemo(
-    () =>
-      selectedEntriesUnsorted
-        ? (value.map((id) => selectedEntriesUnsorted.find((e) => e.id === id)) as EntryResource[])
-        : null,
-    [selectedEntriesUnsorted],
-  );
   return (
     <div className="space-y-4 max-w-full relative">
       <div className="max-w-full">
@@ -44,7 +44,14 @@ function EntryPickerMulti({
           <Tag
             key={entry.id}
             label={entry._entryTitle}
-            onX={!canRemove || canRemove(entry) ? () => onChange(value.filter((id) => id !== entry.id)) : undefined}
+            onX={
+              !canRemove || canRemove(entry)
+                ? () => {
+                    onChange(value.filter((id) => id !== entry.id));
+                    setSelectedEntries((selectedEntries) => selectedEntries.filter((e) => e.id !== entry.id));
+                  }
+                : undefined
+            }
           />
         ))}
         {!selectedEntries && isValidatingSelection && <Tag label="..." />}
@@ -72,8 +79,10 @@ function EntryPickerMulti({
                     e.stopPropagation();
                     // toggle id in value
                     if (value.includes(entry.id)) {
+                      setSelectedEntries(selectedEntries.filter((e) => e.id !== entry.id));
                       onChange(value.filter((id) => id !== entry.id));
                     } else {
+                      setSelectedEntries(selectedEntries.concat([entry]));
                       onChange(value.concat([entry.id]));
                     }
                   }}

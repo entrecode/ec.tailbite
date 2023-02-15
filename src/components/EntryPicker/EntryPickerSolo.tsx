@@ -1,5 +1,6 @@
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
-import { useRef } from 'react';
+import EntryResource from 'ec.sdk/lib/resources/publicAPI/EntryResource';
+import { useRef, useState } from 'react';
 import useEntry from '../../hooks/useEntry';
 import useEntrySearch from '../../hooks/useEntrySearch';
 import useFloatingElement from '../../hooks/useFloatingElement';
@@ -20,17 +21,16 @@ function EntryPickerSolo({
   const clicktrap = useRef<any>();
   const { open: showDropdown, setOpen: setShowDropdown } = useFloatingElement(clicktrap);
   const { addable, query, setQuery, isValidating } = useEntrySearch({ model, search, searchEmpty: true });
+  const [selectedEntry, setSelectedEntry] = useState<EntryResource | null>();
   const {
-    data: selectedEntry,
+    // data: selectedEntry,
     isValidating: selectionLoading,
     // mutate,
   } = useEntry({
     model,
     id: value,
     swrOptions: {
-      use: [
-        /* laggySWR */
-      ],
+      onSuccess: (entry) => setSelectedEntry(entry),
       revalidateOnFocus: false,
     },
   });
@@ -40,7 +40,14 @@ function EntryPickerSolo({
         {selectedEntry && (
           <Tag
             label={selectedEntry[label]}
-            onX={!canRemove || canRemove(selectedEntry) ? () => onChange(null) : undefined}
+            onX={
+              !canRemove || canRemove(selectedEntry)
+                ? () => {
+                    onChange(null);
+                    setSelectedEntry(null);
+                  }
+                : undefined
+            }
           />
         )}
         {!selectedEntry && selectionLoading && <Tag label="..." />}
@@ -67,6 +74,7 @@ function EntryPickerSolo({
                   onClick={() => {
                     // mutate(entry, { optimisticData: entry, populateCache: true, revalidate: false });
                     onChange(value !== entry.id ? entry.id : null);
+                    setSelectedEntry(value !== entry.id ? entry : null);
                     setShowDropdown(false);
                   }}
                 >
