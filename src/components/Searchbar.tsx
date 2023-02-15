@@ -1,6 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import React, { useState } from 'react';
 import { classNames } from '../util/classNames';
+import Spinner from './Spinner';
 
 // TODO: use Input.WithIcon
 
@@ -24,6 +25,7 @@ function Searchbar(props: {
   onFocus?: (e: any) => void;
   onBlur?: (e: any) => void;
   autoFocus?: boolean;
+  loading?: boolean;
 }) {
   const {
     value = '',
@@ -34,6 +36,7 @@ function Searchbar(props: {
     autoFocus,
     onFocus,
     onBlur,
+    loading,
   } = props;
   return (
     <div className="relative rounded-md shadow-sm">
@@ -61,6 +64,11 @@ function Searchbar(props: {
         )}
         placeholder={placeholder}
       />
+      {loading && (
+        <div className="absolute top-2 right-2">
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 }
