@@ -20,6 +20,7 @@ function EntryPickerMulti({
   search = 'title',
   label = '_entryTitle',
   canRemove,
+  filterOptions,
 }: EntryPickerProps<string[]>) {
   const clicktrap = useRef<any>();
   const { open: showDropdown, setOpen: setShowDropdown } = useFloatingElement(clicktrap);
@@ -30,6 +31,7 @@ function EntryPickerMulti({
     searchEmpty: true,
     exclude: value,
     search,
+    filterOptions,
   });
   const [selectedEntries, setSelectedEntries] = useState<EntryResource[]>([]);
 

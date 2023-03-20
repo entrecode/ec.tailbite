@@ -65,7 +65,7 @@ const ProseEditor = (props: any) => {
         manager={manager}
         initialContent={state}
         classNames={[
-          'border border-gray-200 rounded-md mt-2 prose p-2 prose-p:my-0 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary',
+          'w-full max-w-full min-h-16 border border-gray-200 rounded-md mt-2 prose p-2 prose-p:my-0 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary',
         ]}
         autoRender="end"
         onChange={(parameter) => {

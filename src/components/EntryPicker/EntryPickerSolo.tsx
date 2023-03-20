@@ -17,10 +17,16 @@ function EntryPickerSolo({
   search = 'title',
   label = '_entryTitle',
   canRemove,
+  filterOptions,
 }: EntryPickerProps<string | null>) {
   const clicktrap = useRef<any>();
   const { open: showDropdown, setOpen: setShowDropdown } = useFloatingElement(clicktrap);
-  const { addable, query, setQuery, isValidating } = useEntrySearch({ model, search, searchEmpty: true });
+  const { addable, query, setQuery, isValidating } = useEntrySearch({
+    model,
+    search,
+    searchEmpty: true,
+    filterOptions,
+  });
   const [selectedEntry, setSelectedEntry] = useState<EntryResource | null>();
   const shouldLoad = value !== (selectedEntry?.id || null);
   const {

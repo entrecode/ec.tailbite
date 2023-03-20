@@ -19,6 +19,7 @@ export declare interface EntryPickerProps<T> {
   autoselect?: boolean;
   onChange: (value: T) => void;
   canRemove?: (entry: LightEntry) => boolean;
+  filterOptions?: object;
 }
 
 export function EntryPickerInput({

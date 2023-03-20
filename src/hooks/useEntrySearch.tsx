@@ -10,14 +10,21 @@ export declare interface UseEntrySearchProps {
   exclude?: string[];
   searchEmpty?: boolean; // if true, the search will also trigger when the query is empty
   swrOptions?: SWRConfiguration<EntryList, any>; // TODO: add error typing
+  filterOptions?: object;
 }
 
-function useEntrySearch({ model, search = 'title', exclude = [], searchEmpty = false }: UseEntrySearchProps) {
+function useEntrySearch({
+  model,
+  search = 'title',
+  exclude = [],
+  searchEmpty = false,
+  filterOptions,
+}: UseEntrySearchProps) {
   const [query, setQuery] = useState('');
   const debouncedQuery = useDebounce(query.length > 1 ? query : '', 500);
   const swrResponse = useEntryList({
     model: (searchEmpty || debouncedQuery) && model ? model : null,
-    filterOptions: { [search]: { search: debouncedQuery } },
+    filterOptions: { [search]: { search: debouncedQuery, ...filterOptions } },
   });
   const { items: searchResult = [] } = swrResponse;
   const searchResultAddable = useMemo(
