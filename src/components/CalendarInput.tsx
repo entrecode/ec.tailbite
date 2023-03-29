@@ -8,8 +8,6 @@ import Button from './Button';
 import Calendar from './Calendar';
 import Form from './Form';
 
-const dateFormat = 'DD.MM.YYYY'; // the format used for typing in the text input
-
 const formatDay = (day: Dayjs, outputFormat?: string) => {
   if (!outputFormat) {
     return day.toISOString();
@@ -46,9 +44,11 @@ function CalendarInput({
   format,
   onChange,
   placeholder,
+  inputFormat = 'DD.MM.YYYY',
 }: {
   value: string | null;
   format?: string; // if not set, iso is assumed
+  inputFormat?: string; // the format for typing in
   onChange?: (value: string | null) => void;
   placeholder?: string;
 }) {
@@ -76,7 +76,7 @@ function CalendarInput({
       return '';
     }
     if (isStrictlyValid(value, format)) {
-      return dayjs(value, format).format(dateFormat);
+      return dayjs(value, format).format(inputFormat);
     }
     return value; // invalid value while typing
   }, [value]);
@@ -107,7 +107,7 @@ function CalendarInput({
             setOpen(true);
           }}
           onChange={(e) => {
-            const newValue = getValue(e.target.value, dateFormat, format);
+            const newValue = getValue(e.target.value, inputFormat, format);
             setValue(newValue);
             onChange?.(newValue);
           }}
@@ -136,7 +136,7 @@ function CalendarInput({
 }
 
 export function DateInput(props: any) {
-  const { placeholder, control, name, rules, format } = props;
+  const { placeholder, control, name, rules, format, inputFormat } = props;
   return (
     <Controller
       render={({ field }) => (
@@ -145,6 +145,7 @@ export function DateInput(props: any) {
           value={field.value}
           onChange={(value) => field.onChange(value)}
           format={format}
+          inputFormat={inputFormat}
         />
       )}
       control={control}
@@ -199,6 +200,8 @@ export function DateInputExample() {
       </Button>
       {date}
       <DateInput control={control} name="date" />
+      <h3>With time:</h3>
+      <DateInput control={control} name="date" inputFormat="DD.MM.YYYY HH:mm" />
     </div>
   );
 }
