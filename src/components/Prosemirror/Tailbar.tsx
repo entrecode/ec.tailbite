@@ -38,7 +38,7 @@ function Tailbar() {
   } = useCommands();
   const active = useActive();
   return (
-    <div className="flex space-x-2">
+    <div className="sm:flex space-y-1 sm:space-y-0 sm:space-x-4">
       <div className="whitespace-nowrap">
         <Button
           $disabled={!undo.enabled()}
