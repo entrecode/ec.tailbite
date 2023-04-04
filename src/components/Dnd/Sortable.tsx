@@ -18,9 +18,9 @@ export interface DndItem {
 }
 
 declare type UseSortableReturn = ReturnType<typeof useSortable>;
-declare type ItemRenderer = (item: DndItem, sortable: UseSortableReturn) => ReactNode;
+declare type ItemRenderer = (item: DndItem, sortable: UseSortableReturn, index: number) => ReactNode;
 
-export function SortableItem(props: { item: DndItem; children: ItemRenderer }) {
+export function SortableItem(props: { item: DndItem; children: ItemRenderer; index: number }) {
   const sortable = useSortable({
     id: props.item.id,
   });
@@ -34,7 +34,7 @@ export function SortableItem(props: { item: DndItem; children: ItemRenderer }) {
   const handleProps = { ...listeners, ...attributes };
   return (
     <div ref={setNodeRef} style={style}>
-      {props.children(props.item, sortable)}
+      {props.children(props.item, sortable, props.index)}
     </div>
   );
 }
@@ -67,8 +67,8 @@ export function Sortable({
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={items.map((item) => item.id)} strategy={strategies[strategy]}>
-        {items.map((item) => (
-          <SortableItem key={item.id} item={item}>
+        {items.map((item, i) => (
+          <SortableItem key={item.id} item={item} index={i}>
             {children}
           </SortableItem>
         ))}
@@ -152,12 +152,12 @@ export function SortableExample() {
       <h3 className="text-xl my-8">Vertical Images with Handle</h3>
       <div className="flex flex-col space-y-2">
         <Sortable value={b} onChange={setB}>
-          {(item, { listeners, attributes }) => (
+          {(item, { listeners, attributes }, index) => (
             <div>
               <div className="border p-2 bg-slate-50 inline-block">
                 <img src={item.url} width="200" height="200" className="pointer-events-none" />
                 <div className="cursor-move select-none" {...listeners} {...attributes}>
-                  drag me
+                  drag me {index}
                 </div>
               </div>
             </div>
