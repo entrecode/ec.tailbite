@@ -16,6 +16,8 @@
     "patch": "sh ./patch.sh"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.0.8",
+    "@dnd-kit/sortable": "^7.0.2",
     "@remirror/extension-drop-cursor": "^2.0.11",
     "@remirror/extension-heading": "^2.0.11",
     "@remirror/extension-history": "^2.0.11",

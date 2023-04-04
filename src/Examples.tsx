@@ -36,6 +36,7 @@ import Tailbite from './components/Tailbite';
 import { TimePaginationExample } from './components/TimePagination';
 import { ToggleExample } from './components/Toggle';
 import { ToolyExample } from './components/Tooly';
+import { SortableExample } from './components/Dnd/Sortable';
 import Home from './demo/Home';
 import Sidenav from './demo/Sidenav';
 import Topnav from './demo/Topnav';
@@ -74,6 +75,7 @@ export const routes = [
   { path: 'Sidebar', element: <SidebarExample /> },
   { path: 'SimpleSelect', element: <SimpleSelectExample /> },
   { path: 'Snippet', element: <SnippetExample /> },
+  { path: 'Sortable', element: <SortableExample /> },
   { path: 'StyledTab', element: <StyledTabExample /> },
   { path: 'Table', element: <TableExample /> },
   { path: 'TimePagination', element: <TimePaginationExample /> },
