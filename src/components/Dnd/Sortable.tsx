@@ -94,6 +94,8 @@ const images = ['https://unsplash.it/200/200', 'https://unsplash.it/201/201', 'h
 export function SortableExample() {
   const [a, setA] = useState<DndItem[]>(fruit);
   const [b, setB] = useState<DndItem[]>(images);
+  const [c, setC] = useState<DndItem[]>(images);
+  const [d, setD] = useState<DndItem[]>(images);
   return (
     <>
       <p>
@@ -107,14 +109,26 @@ export function SortableExample() {
           </span>
         )}
       </Sortable>
-      <h3 className="text-xl my-8">Vertical List</h3>
-      <div className="flex flex-col space-y-2">
-        <Sortable value={b} onChange={setB}>
+      <h3 className="text-xl my-8">Horizontal Images</h3>
+      <div className="flex space-x-2">
+        <Sortable value={d} onChange={setD} direction="x">
+          {(item, { listeners, attributes }) => (
+            <div>
+              <div className="border p-2 bg-slate-50 inline-block cursor-move" {...listeners} {...attributes}>
+                <img src={item.url} width="200" height="200" />
+              </div>
+            </div>
+          )}
+        </Sortable>
+      </div>
+      <h3 className="text-xl my-8">Horizontal Images with Handle</h3>
+      <div className="flex space-x-2">
+        <Sortable value={c} onChange={setC} direction="x">
           {(item, { listeners, attributes }) => (
             <div>
               <div className="border p-2 bg-slate-50 inline-block">
-                <img src={item.url} width="200" height="200" />
-                <div className="cursor-move" {...listeners} {...attributes}>
+                <img src={item.url} width="200" height="200" className="pointer-events-none" />
+                <div className="cursor-move select-none" {...listeners} {...attributes}>
                   drag me
                 </div>
               </div>
@@ -122,14 +136,14 @@ export function SortableExample() {
           )}
         </Sortable>
       </div>
-      <h3 className="text-xl my-8">Horizontal Images</h3>
-      <div className="flex space-x-2">
-        <Sortable value={b} onChange={setB} direction="x">
+      <h3 className="text-xl my-8">Vertical Images with Handle</h3>
+      <div className="flex flex-col space-y-2">
+        <Sortable value={b} onChange={setB}>
           {(item, { listeners, attributes }) => (
             <div>
               <div className="border p-2 bg-slate-50 inline-block">
-                <img src={item.url} width="200" height="200" />
-                <div className="cursor-move" {...listeners} {...attributes}>
+                <img src={item.url} width="200" height="200" className="pointer-events-none" />
+                <div className="cursor-move select-none" {...listeners} {...attributes}>
                   drag me
                 </div>
               </div>
