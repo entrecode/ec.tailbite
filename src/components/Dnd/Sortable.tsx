@@ -7,6 +7,8 @@ import {
   verticalListSortingStrategy,
   horizontalListSortingStrategy,
   useSortable,
+  rectSortingStrategy,
+  rectSwappingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
@@ -37,21 +39,23 @@ export function SortableItem(props: { item: DndItem; children: ItemRenderer }) {
   );
 }
 
-const directionStrategies = {
+const strategies = {
   x: horizontalListSortingStrategy,
   y: verticalListSortingStrategy,
+  sort: rectSortingStrategy,
+  swap: rectSwappingStrategy,
 };
 
 export function Sortable({
   value: items,
   onChange: setItems,
   children,
-  direction = 'y',
+  strategy = 'y',
 }: {
   value: DndItem[];
   onChange: Dispatch<SetStateAction<DndItem[]>>;
   children: ItemRenderer;
-  direction?: keyof typeof directionStrategies;
+  strategy?: keyof typeof strategies;
 }) {
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -62,7 +66,7 @@ export function Sortable({
 
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <SortableContext items={items.map((item) => item.id)} strategy={directionStrategies[direction]}>
+      <SortableContext items={items.map((item) => item.id)} strategy={strategies[strategy]}>
         {items.map((item) => (
           <SortableItem key={item.id} item={item}>
             {children}
@@ -90,12 +94,21 @@ const fruit = ['Apple', 'Banana', 'Lemon'].map((value, id) => ({ value, id: id +
 const images = ['https://unsplash.it/200/200', 'https://unsplash.it/201/201', 'https://unsplash.it/202/202'].map(
   (url, i) => ({ url, id: i + '' }),
 );
+const moreImages = [
+  'https://unsplash.it/200/200',
+  'https://unsplash.it/201/201',
+  'https://unsplash.it/202/202',
+  'https://unsplash.it/203/203',
+  'https://unsplash.it/204/204',
+  'https://unsplash.it/205/205',
+].map((url, i) => ({ url, id: i + '' }));
 
 export function SortableExample() {
   const [a, setA] = useState<DndItem[]>(fruit);
   const [b, setB] = useState<DndItem[]>(images);
   const [c, setC] = useState<DndItem[]>(images);
   const [d, setD] = useState<DndItem[]>(images);
+  const [e, setE] = useState<DndItem[]>(moreImages);
   return (
     <>
       <p>
@@ -111,7 +124,7 @@ export function SortableExample() {
       </Sortable>
       <h3 className="text-xl my-8">Horizontal Images</h3>
       <div className="flex space-x-2">
-        <Sortable value={d} onChange={setD} direction="x">
+        <Sortable value={d} onChange={setD} strategy="x">
           {(item, { listeners, attributes }) => (
             <div>
               <div className="border p-2 bg-slate-50 inline-block cursor-move" {...listeners} {...attributes}>
@@ -123,7 +136,7 @@ export function SortableExample() {
       </div>
       <h3 className="text-xl my-8">Horizontal Images with Handle</h3>
       <div className="flex space-x-2">
-        <Sortable value={c} onChange={setC} direction="x">
+        <Sortable value={c} onChange={setC} strategy="x">
           {(item, { listeners, attributes }) => (
             <div>
               <div className="border p-2 bg-slate-50 inline-block">
@@ -147,6 +160,16 @@ export function SortableExample() {
                   drag me
                 </div>
               </div>
+            </div>
+          )}
+        </Sortable>
+      </div>
+      <h3 className="text-xl my-8">Grid Images</h3>
+      <div className="flex flex-wrap gap-2">
+        <Sortable value={e} onChange={setE} strategy="sort">
+          {(item, { listeners, attributes }) => (
+            <div className="border p-2 bg-slate-50" {...listeners} {...attributes}>
+              <img src={item.url} width="200" height="200" className="pointer-events-none" />
             </div>
           )}
         </Sortable>
