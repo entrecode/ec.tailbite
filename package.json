@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "production": "tsc && vite build --config vite.config.website.ts",
     "preview": "vite preview",
     "patch": "sh ./patch.sh"
   },
