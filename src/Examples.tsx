@@ -41,6 +41,7 @@ import Home from './demo/Home';
 import Sidenav from './demo/Sidenav';
 import Topnav from './demo/Topnav';
 import { UseSetExample } from './hooks/useSet';
+import { UseFileDragExample } from './hooks/useFileDrag';
 
 export const routes = [
   { path: '', element: <Home /> },
@@ -81,6 +82,7 @@ export const routes = [
   { path: 'TimePagination', element: <TimePaginationExample /> },
   { path: 'Tooly', element: <ToolyExample /> },
   { path: 'useSet', element: <UseSetExample /> },
+  { path: 'useFileDrag', element: <UseFileDragExample /> },
 ].sort((a, b) => a.path.localeCompare(b.path));
 
 const router = createBrowserRouter(
