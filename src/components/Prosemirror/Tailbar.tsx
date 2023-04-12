@@ -16,12 +16,25 @@ import {
 } from '@remirror/icons';
 import { useState, createElement } from 'react';
 import ImageAddModal, { WithSrc } from '../ImageAddModal';
+import useEvent from '../../hooks/useEvent';
 
 function Icon({ data, ...rest }) {
   return (
     <svg {...rest} viewBox="0 0 22 22">
       {data.map(({ tag, attr }, i) => createElement(tag, { ...attr, key: i }))}
     </svg>
+  );
+}
+
+export const imageAddKey = 'Tailbar.addImage';
+
+export function triggerImageAdd(src) {
+  document.dispatchEvent(
+    new CustomEvent(imageAddKey, {
+      detail: {
+        src,
+      },
+    }),
   );
 }
 
@@ -41,6 +54,10 @@ function Tailbar({ onImageAdd }: { onImageAdd?: (files: File[]) => Promise<WithS
   } = useCommands();
   const active = useActive();
   const [showImageModal, setShowImageModal] = useState(false);
+  useEvent(imageAddKey, (e) => {
+    insertImage(e.detail);
+    focus();
+  });
   return (
     <>
       <div className="sm:flex space-y-1 sm:space-y-0 sm:space-x-4">

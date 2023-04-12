@@ -10,7 +10,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { htmlToProsemirrorNode, prosemirrorNodeToHtml } from 'remirror';
 import { BoldExtension, ItalicExtension, UnderlineExtension, StrikeExtension } from 'remirror/extensions';
 import Button from '../Button';
-import Tailbar from './Tailbar';
+import Tailbar, { triggerImageAdd } from './Tailbar';
 import { WithSrc } from '../ImageAddModal';
 import getFileUrl from '../../util/fileUrl';
 
@@ -121,6 +121,13 @@ export function ProseInputExample() {
         }}
       >
         change from outside
+      </Button>
+      <Button
+        onClick={() => {
+          triggerImageAdd('https://unsplash.it/200/200');
+        }}
+      >
+        add image from outside
       </Button>
       <ProseInput
         control={control}
