@@ -206,8 +206,8 @@ function Tailbar({ onImageAdd }: { onImageAdd?: (files: File[]) => Promise<WithS
         <ImageAddModal
           open={showImageModal}
           onClose={() => setShowImageModal(false)}
-          onImageAdd={onImageAdd}
-          onAdd={(images) => {
+          onImageAdd={async (files) => {
+            const images = await onImageAdd(files);
             images.forEach((image) => insertImage(image));
             focus();
           }}

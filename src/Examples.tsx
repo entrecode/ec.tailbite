@@ -42,6 +42,7 @@ import Sidenav from './demo/Sidenav';
 import Topnav from './demo/Topnav';
 import { UseSetExample } from './hooks/useSet';
 import { UseFileDragExample } from './hooks/useFileDrag';
+import { ImageAddModalExample } from './components/ImageAddModal';
 
 export const routes = [
   { path: '', element: <Home /> },
@@ -65,6 +66,7 @@ export const routes = [
   { path: 'Dropdown', element: <DropdownExample /> },
   { path: 'EmptyList', element: <EmptyListExample /> },
   { path: 'EntryPicker', element: <EntryPickerExample /> },
+  { path: 'ImageAddModal', element: <ImageAddModalExample /> },
   // { path: 'EntryModal', element: <EntryModalExample /> },
   { path: 'JSONInput', element: <JSONInputExample /> },
   { path: 'Modal', element: <ModalExample /> },

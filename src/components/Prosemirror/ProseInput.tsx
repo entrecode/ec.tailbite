@@ -12,6 +12,7 @@ import { BoldExtension, ItalicExtension, UnderlineExtension, StrikeExtension } f
 import Button from '../Button';
 import Tailbar from './Tailbar';
 import { WithSrc } from '../ImageAddModal';
+import getFileUrl from '../../util/fileUrl';
 
 export interface EditorRef {
   setContent: (content: any) => void;
@@ -121,7 +122,15 @@ export function ProseInputExample() {
       >
         change from outside
       </Button>
-      <ProseInput control={control} name="prose" />
+      <ProseInput
+        control={control}
+        name="prose"
+        onImageAdd={async (files) => {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          const _urls = await Promise.all(files.map((file) => getFileUrl(file)));
+          return _urls.map((src) => ({ src }));
+        }}
+      />
       <div>
         <code>{value}</code>
       </div>

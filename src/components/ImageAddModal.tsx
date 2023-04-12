@@ -3,6 +3,7 @@ import getFileUrl from '../util/fileUrl';
 import Button from './Button';
 import Modal from './Modal';
 import { useState } from 'react';
+import Spinner from './Spinner';
 
 export type WithSrc = {
   src: string;
@@ -11,13 +12,11 @@ export type WithSrc = {
 function ImageAddModal({
   open,
   onClose,
-  onAdd,
   onImageAdd,
 }: {
   open: boolean;
   onClose: () => void;
-  onAdd: (images: WithSrc[]) => void;
-  onImageAdd: (files: File[]) => Promise<WithSrc[]>;
+  onImageAdd: (files: File[]) => void;
 }) {
   const [urls, setUrls] = useState<string[]>([]);
   const [files, setFiles] = useState<File[]>([]);
@@ -57,24 +56,26 @@ function ImageAddModal({
           <img src={url} key={i} />
         ))}
       </div>
-      <div className="flex justify-end space-x-2">
+      <div className="grid grid-cols-1 gap-2">
         <Button onClick={() => onClose()}>abbrechen</Button>
         <Button
+          className="space-x-2"
           $primary={urls.length}
           $disabled={!urls.length}
           onClick={async () => {
             setPending(true);
             try {
-              const images = await onImageAdd(files);
-              onAdd(images);
+              await onImageAdd(files);
             } catch (err) {
               console.warn('error adding image', err);
             }
             setPending(false);
+            setFiles([]);
+            setUrls([]);
             onClose();
           }}
         >
-          Hochladen
+          <span>Hochladen</span> {pending && <Spinner />}
         </Button>
       </div>
     </Modal>
@@ -82,3 +83,26 @@ function ImageAddModal({
 }
 
 export default ImageAddModal;
+
+export function ImageAddModalExample() {
+  const [open, setOpen] = useState(false);
+  const [urls, setUrls] = useState<string[]>([]);
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>open</Button>
+      {urls.map((url, i) => (
+        <img key={i} src={url} className="w-64" />
+      ))}
+      <ImageAddModal
+        open={open}
+        onClose={() => setOpen(false)}
+        onImageAdd={async (files) => {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          const _urls = await Promise.all(files.map((file) => getFileUrl(file)));
+          setUrls(_urls);
+          return [];
+        }}
+      />
+    </div>
+  );
+}
