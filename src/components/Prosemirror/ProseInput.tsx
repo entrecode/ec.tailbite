@@ -11,6 +11,7 @@ import { htmlToProsemirrorNode, prosemirrorNodeToHtml } from 'remirror';
 import { BoldExtension, ItalicExtension, UnderlineExtension, StrikeExtension } from 'remirror/extensions';
 import Button from '../Button';
 import Tailbar from './Tailbar';
+import { WithSrc } from '../ImageAddModal';
 
 export interface EditorRef {
   setContent: (content: any) => void;
@@ -39,8 +40,14 @@ const ImperativeHandle = forwardRef((_: unknown, ref: Ref<EditorRef>) => {
   return <></>;
 });
 
-const ProseEditor = (props: any) => {
-  const { value: valueProp, onChange } = props as any;
+declare interface ProseEditorProps {
+  value: string;
+  onChange: (value: string) => void;
+  onImageAdd: (files: File[]) => Promise<WithSrc[]>;
+}
+
+const ProseEditor = (props: ProseEditorProps) => {
+  const { value: valueProp, onChange, onImageAdd } = props as any;
   const editorRef = useRef<EditorRef | null>(null);
   const { manager, state, setState } = useRemirror({
     extensions,
@@ -76,7 +83,7 @@ const ProseEditor = (props: any) => {
           internalValue.current = html;
         }}
       >
-        <Tailbar />
+        <Tailbar onImageAdd={onImageAdd} />
         <ImperativeHandle ref={editorRef} />
       </Remirror>
     </div>
@@ -88,10 +95,10 @@ export default ProseEditor;
 // wrap editor in react-hook-form controller
 
 export function ProseInput(props: any) {
-  const { control, label, secondaryLabel, name, defaultValue, rules } = props;
+  const { control, label, secondaryLabel, name, defaultValue, rules, onImageAdd } = props;
   return (
     <Controller
-      render={({ field }) => <ProseEditor value={field.value} onChange={field.onChange} />}
+      render={({ field }) => <ProseEditor value={field.value} onChange={field.onChange} onImageAdd={onImageAdd} />}
       control={control}
       name={name}
       defaultValue={defaultValue}
