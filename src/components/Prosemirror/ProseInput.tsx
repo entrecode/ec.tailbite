@@ -1,18 +1,26 @@
-import { BulletListExtension, OrderedListExtension } from '@remirror/extension-list';
-import { HistoryExtension } from '@remirror/extension-history';
-import { HeadingExtension } from '@remirror/extension-heading';
-import { ImageExtension } from '@remirror/extension-image';
-import { LinkExtension } from '@remirror/extension-link';
-import { DropCursorExtension } from '@remirror/extension-drop-cursor';
-import { Remirror, useRemirror, useRemirrorContext } from '@remirror/react';
-import { forwardRef, Ref, useEffect, useImperativeHandle, useRef } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { htmlToProsemirrorNode, prosemirrorNodeToHtml } from 'remirror';
-import { BoldExtension, ItalicExtension, UnderlineExtension, StrikeExtension } from 'remirror/extensions';
-import Button from '../Button';
-import Tailbar, { triggerImageAdd } from './Tailbar';
-import { WithSrc } from '../ImageAddModal';
-import getFileUrl from '../../util/fileUrl';
+import {
+  BulletListExtension,
+  OrderedListExtension,
+} from "@remirror/extension-list";
+import { HistoryExtension } from "@remirror/extension-history";
+import { HeadingExtension } from "@remirror/extension-heading";
+import { ImageExtension } from "@remirror/extension-image";
+import { LinkExtension } from "@remirror/extension-link";
+import { DropCursorExtension } from "@remirror/extension-drop-cursor";
+import { Remirror, useRemirror, useRemirrorContext } from "@remirror/react";
+import { forwardRef, Ref, useEffect, useImperativeHandle, useRef } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { htmlToProsemirrorNode, prosemirrorNodeToHtml } from "remirror";
+import {
+  BoldExtension,
+  ItalicExtension,
+  UnderlineExtension,
+  StrikeExtension,
+} from "remirror/extensions";
+import Button from "../Button";
+import Tailbar, { triggerImageAdd } from "./Tailbar";
+import { WithSrc } from "../ImageAddModal";
+import getFileUrl from "../../util/fileUrl";
 
 export interface EditorRef {
   setContent: (content: any) => void;
@@ -45,22 +53,31 @@ declare interface ProseEditorProps {
   value: string;
   onChange: (value: string) => void;
   onImageAdd: (files: File[]) => Promise<WithSrc[]>;
+  disabled?: boolean;
 }
 
 const ProseEditor = (props: ProseEditorProps) => {
-  const { value: valueProp, onChange, onImageAdd } = props as any;
+  const {
+    value: valueProp,
+    onChange,
+    onImageAdd,
+    disabled = false,
+  } = props as any;
   const editorRef = useRef<EditorRef | null>(null);
   const { manager, state, setState } = useRemirror({
     extensions,
-    stringHandler: 'html',
+    stringHandler: "html",
     content: valueProp,
   });
-  const internalValue = useRef<string>('');
+  const internalValue = useRef<string>("");
 
   useEffect(() => {
     if (valueProp !== internalValue.current) {
       // console.log('value changed from outside', valueProp, value);
-      const doc = htmlToProsemirrorNode({ content: valueProp, schema: state.schema });
+      const doc = htmlToProsemirrorNode({
+        content: valueProp,
+        schema: state.schema,
+      });
       // https://remirror.io/docs/faq/#q-how-to-replace-the-content-in-the-editor
       editorRef.current!.setContent(doc);
       internalValue.current = valueProp;
@@ -70,15 +87,17 @@ const ProseEditor = (props: ProseEditorProps) => {
   return (
     <div spellCheck={false}>
       <Remirror
+        editable={!disabled}
         manager={manager}
         initialContent={state}
         classNames={[
-          'w-full max-w-full min-h-16 border border-gray-200 rounded-md mt-2 prose p-2 prose-p:my-0 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary',
+          "w-full max-w-full min-h-16 border border-gray-200 rounded-md mt-2 prose p-2 prose-p:my-0 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary",
+          disabled && "bg-gray-200 dark:bg-gray-900",
         ]}
         autoRender="end"
         onChange={(parameter) => {
           const html = prosemirrorNodeToHtml(parameter.state.doc);
-          onChange(html || '');
+          onChange(html || "");
           setState(parameter.state);
           // setValue(html);
           internalValue.current = html;
@@ -96,10 +115,26 @@ export default ProseEditor;
 // wrap editor in react-hook-form controller
 
 export function ProseInput(props: any) {
-  const { control, label, secondaryLabel, name, defaultValue, rules, onImageAdd } = props;
+  const {
+    control,
+    label,
+    secondaryLabel,
+    name,
+    defaultValue,
+    rules,
+    onImageAdd,
+    disabled = false,
+  } = props;
   return (
     <Controller
-      render={({ field }) => <ProseEditor value={field.value} onChange={field.onChange} onImageAdd={onImageAdd} />}
+      render={({ field }) => (
+        <ProseEditor
+          disabled={disabled}
+          value={field.value}
+          onChange={field.onChange}
+          onImageAdd={onImageAdd}
+        />
+      )}
       control={control}
       name={name}
       defaultValue={defaultValue}
@@ -109,8 +144,10 @@ export function ProseInput(props: any) {
 }
 
 export function ProseInputExample() {
-  const { control, reset, watch } = useForm({ defaultValues: { prose: '<p>Hello</p>' } });
-  const value = watch('prose');
+  const { control, reset, watch } = useForm({
+    defaultValues: { prose: "<p>Hello</p>" },
+  });
+  const value = watch("prose");
   return (
     <div className="space-y-4">
       <Button
@@ -124,7 +161,7 @@ export function ProseInputExample() {
       </Button>
       <Button
         onClick={() => {
-          triggerImageAdd('https://unsplash.it/200/200');
+          triggerImageAdd("https://unsplash.it/200/200");
         }}
       >
         add image from outside
@@ -134,13 +171,18 @@ export function ProseInputExample() {
         name="prose"
         onImageAdd={async (files) => {
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          const _urls = await Promise.all(files.map((file) => getFileUrl(file)));
+          const _urls = await Promise.all(
+            files.map((file) => getFileUrl(file))
+          );
           return _urls.map((src) => ({ src }));
         }}
       />
       <div>
         <code>{value}</code>
       </div>
+      <h3>disabled</h3>
+
+      <ProseInput control={control} name="prose" disabled={true} />
     </div>
   );
 }
